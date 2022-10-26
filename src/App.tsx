@@ -1,25 +1,31 @@
 import React from 'react'
-import logo from './logo.svg'
+import {
+    CssBaseline,
+    GlobalStyles,
+    ThemeProvider,
+    useMediaQuery,
+} from '@mui/material'
+import { ThemeConfig } from './assets/theme/ThemeConfig'
+
 import './App.css'
 
 function App() {
+    // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+    const themeConfig = ThemeConfig(prefersDarkMode)
+
+    // Le thème se rafraîchit automatiquement à chaque changement de la valeur de themeConfig
+    const theme = React.useMemo(() => themeConfig, [themeConfig])
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <GlobalStyles
+                styles={{
+                    body: { backgroundColor: theme.palette.background.default },
+                }}
+            />
+        </ThemeProvider>
     )
 }
 
