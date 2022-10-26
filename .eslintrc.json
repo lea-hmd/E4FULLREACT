@@ -1,0 +1,77 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "react",
+        "react-hooks",
+        "testing-library"
+    ],
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+        "plugin:prettier/recommended",
+        "eslint:recommended"
+    ],
+    "rules": {
+        "unicode-bom": "error",
+        "vars-on-top": "warn",
+        "promise/no-nesting": "off",
+        "prefer-const": "error",
+        "valid-jsdoc": "warn",
+        "use-isnan": "warn",
+        "no-sparse-arrays": "error",
+        "no-template-curly-in-string": "error",
+        "no-unreachable": "warn",
+        "no-console": "warn",
+        "no-unused-vars": "warn",
+        "react/no-unescaped-entities": [
+            "error",
+            {
+                "forbid": [">", "}"]
+            }
+        ],
+        "react/prop-types": ["warn"],
+        "react/no-typos": ["warn"],
+        "react/no-unsafe": ["warn"],
+        "react/no-unused-state": ["warn"],
+        "react/no-unused-prop-types": "off",
+        "react/jsx-key": ["warn"],
+        "react/no-children-prop": ["warn"],
+        "react/jsx-no-target-blank": ["warn"],
+        "react/jsx-props-no-multi-spaces": ["warn"],
+        "react/jsx-closing-bracket-location": ["warn"],
+        "react/self-closing-comp": ["warn"],
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": ["warn"],
+        "prettier/prettier": ["warn"]
+    },
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "rules": {}
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": [],
+            "rules": {}
+        },
+        {
+            "files": ["*.js", "*.jsx"],
+            "extends": [],
+            "rules": {}
+        }
+    ]
+}
