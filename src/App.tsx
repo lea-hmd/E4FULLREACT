@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
     CssBaseline,
     GlobalStyles,
@@ -6,10 +7,11 @@ import {
     useMediaQuery,
 } from '@mui/material'
 import { ThemeConfig } from './assets/theme/ThemeConfig'
-import './App.css'
 import Layout from './layouts/Layout'
 
 function App() {
+    const [loggedIn] = React.useState(true) //TODO : Finish this when connection functionality is done
+
     // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
     const [darkMode, setDarkMode] = React.useState(prefersDarkMode)
@@ -36,8 +38,21 @@ function App() {
                     },
                 }}
             />
+            <Router>
+                <Routes>
+                    <Route path="/" />
+                    <Route path="/" />
+                    <Route path="/" />
+                    <Route path="/" />
+                    <Route path="/" />
+                    <Route path="/" />
+                    <Route path="/" />
+                </Routes>
+            </Router>
             <Layout
                 {...{
+                    theme,
+                    loggedIn,
                     darkMode,
                     handleChangeMode,
                 }}

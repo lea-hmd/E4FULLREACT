@@ -9,6 +9,7 @@ export const ThemeConfig = (prefersDarkMode: boolean) => {
         },
         secondary: {
             main: Colors.lightBlue,
+            dark: Colors.navyBlue,
         },
         background: {
             default: Colors.darkBlue,
@@ -21,6 +22,7 @@ export const ThemeConfig = (prefersDarkMode: boolean) => {
         },
         secondary: {
             main: Colors.orange,
+            dark: Colors.beige,
         },
         background: {
             default: Colors.lightWhite,

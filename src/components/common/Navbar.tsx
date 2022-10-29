@@ -5,41 +5,87 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
+// import { Link } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
-import AdbIcon from '@mui/icons-material/Adb'
 import { AccountCircle } from '@mui/icons-material'
 import SwitchThemeButton from '../../assets/theme/SwitchThemeButton'
-const pages = ['Products', 'Pricing', 'Blog']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
+import Logo from '../../assets/images/logo.png'
+import { Theme } from '@mui/material'
+// const pages = [
+//     {
+//         id: 1,
+//         title: 'Accueil',
+//         link: '/',
+//     },
+//     {
+//         id: 2,
+//         title: 'Toutes les annonces',
+//         link: '/', //TODO : Change this link to the right one
+//     },
+// ]
+const settings = [
+    {
+        id: 1,
+        title: 'Mon profil',
+        link: '/', //TODO : Change this link to the right one
+        privateRoute: true,
+    },
+    {
+        id: 2,
+        title: 'Mon profil public',
+        link: '/', //TODO : Change this link to the right one,
+        privateRoute: true,
+    },
+    {
+        id: 3,
+        title: 'Mes annonces',
+        link: '/', //TODO : Change this link to the right one
+        privateRoute: true,
+    },
+    {
+        id: 4,
+        title: 'Se déconnecter',
+        link: '/', //TODO : Change this link to the right one
+        privateRoute: true,
+    },
+    {
+        id: 5,
+        title: 'Se connecter',
+        link: '/',
+        privateRoute: false,
+    },
+    {
+        id: 6,
+        title: "S'inscrire",
+        link: '/',
+        privateRoute: false,
+    },
+]
 
 type NavbarProps = {
+    theme: Theme
     darkMode: boolean
+    loggedIn: boolean
     // eslint-disable-next-line no-unused-vars
     handleChangeMode: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function Navbar({ darkMode, handleChangeMode }: NavbarProps) {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-        null
-    )
+export default function Navbar({
+    theme,
+    loggedIn,
+    darkMode,
+    handleChangeMode,
+}: NavbarProps) {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
         null
     )
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget)
-    }
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget)
-    }
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null)
     }
 
     const handleCloseUserMenu = () => {
@@ -47,75 +93,19 @@ export default function Navbar({ darkMode, handleChangeMode }: NavbarProps) {
     }
 
     return (
-        <AppBar position="static">
+        <AppBar
+            position="static"
+            sx={{ backgroundColor: theme.palette.secondary.dark }}
+        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon
-                        sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-                    />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        LOGO
-                    </Typography>
-
                     <Box
                         sx={{
-                            flexGrow: 1,
-                            display: { xs: 'flex', md: 'none' },
+                            my: 1,
+                            mx: 5,
                         }}
                     >
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {page}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                        <img src={Logo} width={50} />
                     </Box>
                     <Box
                         sx={{
@@ -123,39 +113,45 @@ export default function Navbar({ darkMode, handleChangeMode }: NavbarProps) {
                             display: { xs: 'none', md: 'flex' },
                         }}
                     >
-                        {pages.map((page) => (
+                        {/* {pages.map((page) => (
                             <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                component={Link}
+                                key={page.id}
+                                to={page.link}
+                                sx={{
+                                    my: 2,
+                                    color: theme.palette.primary.main,
+                                    fontWeight: 'bold',
+                                    display: 'block',
+                                }}
                             >
-                                {page}
+                                {page.title}
                             </Button>
-                        ))}
+                        ))} */}
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton
+                                size="large"
                                 onClick={handleOpenUserMenu}
                                 sx={{ p: 0 }}
                             >
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
-                                />
+                                {loggedIn ? (
+                                    <Avatar alt="My Profil picture" src="" />
+                                ) : (
+                                    <AccountCircle
+                                        sx={{
+                                            color: theme.palette.secondary.dark,
+                                            bg: 'transparent',
+                                        }}
+                                    />
+                                )}
+
+                                {/*TODO : Change the source to the right one*/}
                             </IconButton>
                         </Tooltip>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenUserMenu}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+
                         <SwitchThemeButton
                             checked={darkMode}
                             onChange={handleChangeMode}
@@ -176,16 +172,21 @@ export default function Navbar({ darkMode, handleChangeMode }: NavbarProps) {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
+                            {settings
+                                .filter(
+                                    (setting) =>
+                                        setting.privateRoute == loggedIn
+                                )
+                                .map((setting) => (
+                                    <MenuItem
+                                        key={setting.id}
+                                        //TODO : Add onClick props with logout function only if setting title = Se déconnecter
+                                    >
+                                        <Typography textAlign="center">
+                                            {setting.title}
+                                        </Typography>
+                                    </MenuItem>
+                                ))}
                         </Menu>
                     </Box>
                 </Toolbar>
