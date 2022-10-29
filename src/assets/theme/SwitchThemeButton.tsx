@@ -2,14 +2,14 @@ import React from 'react'
 import { styled, Switch } from '@mui/material'
 
 type SwitchThemeButtonProps = {
+    checked: boolean
     // eslint-disable-next-line no-unused-vars
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-    checked: boolean
 }
 
 export default function SwitchThemeButton({
-    onChange,
     checked,
+    onChange,
 }: SwitchThemeButtonProps) {
     const StyledSwitch = styled(Switch)(({ theme }) => ({
         width: 62,

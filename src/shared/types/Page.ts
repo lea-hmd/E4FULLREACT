@@ -2,10 +2,10 @@ import React from 'react'
 
 export type Page = {
     id: number
-    title: string
     link: string
-    privateRoute?: boolean
-    userMenu?: boolean
+    title: string
     logout?: boolean
+    userMenu?: boolean
+    privateRoute?: boolean
     icon?: React.ReactNode
 }

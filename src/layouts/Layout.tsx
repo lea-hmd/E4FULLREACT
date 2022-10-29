@@ -3,12 +3,12 @@ import React from 'react'
 import Navbar from '../components/navbar/Navbar'
 
 type LayoutProps = {
-    children: React.ReactNode
-    darkMode: boolean
-    // eslint-disable-next-line no-unused-vars
-    handleChangeMode: (event: React.ChangeEvent<HTMLInputElement>) => void
     theme: Theme
     loggedIn: boolean
+    darkMode: boolean
+    children: React.ReactNode
+    // eslint-disable-next-line no-unused-vars
+    handleChangeMode: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function Layout({
@@ -28,7 +28,7 @@ export default function Layout({
                     handleChangeMode,
                 }}
             />
-            <Container maxWidth="xl" sx={{ my: 5 }}>
+            <Container maxWidth="xl" sx={{ my: 5, mx: 3 }}>
                 {children}
             </Container>
         </>

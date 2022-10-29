@@ -6,7 +6,9 @@ import {
     ThemeProvider,
     useMediaQuery,
 } from '@mui/material'
+
 import { ThemeConfig } from './assets/theme/ThemeConfig'
+
 import Layout from './layouts/Layout'
 import Homepage from './pages/Homepage'
 import Offers from './pages/Offers'
@@ -19,17 +21,19 @@ import Logout from './pages/Logout'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
 
-function App() {
+export default function App() {
     const [loggedIn, setLoggedIn] = React.useState(true) //TODO: Léa - Finish this when connection functionality is done
 
     // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
     const [darkMode, setDarkMode] = React.useState(prefersDarkMode)
     const themeConfig = ThemeConfig(darkMode)
+
     const handleChangeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDarkMode(event.target.checked)
         setLoggedIn(!loggedIn) //TODO: Léa - Remove this when connection functionality is done
     }
+
     // Le thème se rafraîchit automatiquement à chaque changement de la valeur de themeConfig
     const theme = React.useMemo(() => themeConfig, [themeConfig])
 
@@ -88,5 +92,3 @@ function App() {
         </ThemeProvider>
     )
 }
-
-export default App

@@ -1,5 +1,4 @@
 // Charte graphique du projet
-
 export const Colors = {
     darkBlue: '#051F38',
     navyBlue: '#08345E',
