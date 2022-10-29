@@ -1,11 +1,13 @@
 import { Page } from '../types/Page'
 import {
-    ManageAccounts,
-    PersonSearch,
-    Logout,
-    Login,
+    Home,
+    LocalMall,
     LocalOffer,
+    Login,
+    Logout,
+    ManageAccounts,
     PersonAdd,
+    PersonSearch,
 } from '@mui/icons-material'
 
 //TODO: Léa - Don't forget to check the links
@@ -15,11 +17,13 @@ export const pages: Page[] = [
         id: 1,
         title: 'Accueil',
         link: '/',
+        icon: <Home color="primary" />,
     },
     {
         id: 2,
         title: 'Toutes les annonces',
         link: '/annonces',
+        icon: <LocalMall color="primary" />,
     },
     {
         id: 3,
