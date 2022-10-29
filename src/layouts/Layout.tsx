@@ -1,5 +1,7 @@
-import { Container, Theme } from '@mui/material'
 import React from 'react'
+import { Container, Theme } from '@mui/material'
+
+import Footer from '../components/footer/Footer'
 import Navbar from '../components/navbar/Navbar'
 
 type LayoutProps = {
@@ -28,9 +30,10 @@ export default function Layout({
                     handleChangeMode,
                 }}
             />
-            <Container maxWidth="xl" sx={{ my: 5, mx: 3 }}>
+            <Container maxWidth="xl" sx={{ my: 5 }}>
                 {children}
             </Container>
+            <Footer {...{ theme }} />
         </>
     )
 }
