@@ -1,9 +1,9 @@
-import { Theme } from '@mui/material'
+import { Container, Theme } from '@mui/material'
 import React from 'react'
-import Navbar from '../components/common/Navbar'
+import Navbar from '../components/navbar/Navbar'
 
 type LayoutProps = {
-    children?: React.ReactNode
+    children: React.ReactNode
     darkMode: boolean
     // eslint-disable-next-line no-unused-vars
     handleChangeMode: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -28,7 +28,9 @@ export default function Layout({
                     handleChangeMode,
                 }}
             />
-            {children}
+            <Container maxWidth="xl" sx={{ my: 5 }}>
+                {children}
+            </Container>
         </>
     )
 }
