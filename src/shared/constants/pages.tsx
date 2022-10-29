@@ -1,4 +1,12 @@
 import { Page } from '../types/Page'
+import {
+    ManageAccounts,
+    PersonSearch,
+    Logout,
+    Login,
+    LocalOffer,
+    PersonAdd,
+} from '@mui/icons-material'
 
 //TODO: Léa - Don't forget to check the links
 
@@ -19,6 +27,7 @@ export const pages: Page[] = [
         link: '/mon-profil',
         privateRoute: true,
         userMenu: true,
+        icon: <ManageAccounts color="primary" />,
     },
     {
         id: 4,
@@ -26,6 +35,7 @@ export const pages: Page[] = [
         link: '/profil/:id',
         privateRoute: true,
         userMenu: true,
+        icon: <PersonSearch color="primary" />,
     },
     {
         id: 5,
@@ -33,6 +43,7 @@ export const pages: Page[] = [
         link: '/mes-annonces',
         privateRoute: true,
         userMenu: true,
+        icon: <LocalOffer color="primary" />,
     },
     {
         id: 6,
@@ -41,6 +52,7 @@ export const pages: Page[] = [
         privateRoute: true,
         userMenu: true,
         logout: true,
+        icon: <Logout color="primary" />,
     },
     {
         id: 7,
@@ -48,6 +60,7 @@ export const pages: Page[] = [
         link: '/connexion',
         userMenu: true,
         privateRoute: false,
+        icon: <Login color="primary" />,
     },
     {
         id: 8,
@@ -55,5 +68,6 @@ export const pages: Page[] = [
         link: '/inscription',
         userMenu: true,
         privateRoute: false,
+        icon: <PersonAdd color="primary" />,
     },
 ]
