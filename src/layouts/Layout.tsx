@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Theme } from '@mui/material'
 
-import Footer from '../components/footer/Footer'
-import Navbar from '../components/navbar/Navbar'
+import Footer from '../components/common/footer/Footer'
+import Navbar from '../components/common/navbar/Navbar'
 
 type LayoutProps = {
     theme: Theme
