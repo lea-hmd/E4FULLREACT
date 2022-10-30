@@ -22,7 +22,8 @@ import Login from './pages/Login'
 import Signin from './pages/Signin'
 
 export default function App() {
-    const [loggedIn, setLoggedIn] = React.useState(true) //TODO: Léa - Finish this when connection functionality is done
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+    const [loggedIn, setLoggedIn] = React.useState(false) //TODO: Léa - Finish this when connection functionality is done
 
     // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -31,7 +32,6 @@ export default function App() {
 
     const handleChangeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDarkMode(event.target.checked)
-        setLoggedIn(!loggedIn) //TODO: Léa - Remove this when connection functionality is done
     }
 
     // Le thème se rafraîchit automatiquement à chaque changement de la valeur de themeConfig
