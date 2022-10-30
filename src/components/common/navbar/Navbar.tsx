@@ -15,12 +15,12 @@ import {
 } from '@mui/material'
 import { styled, Theme } from '@mui/material/styles'
 
-import SwitchThemeButton from '../../assets/theme/SwitchThemeButton'
+import SwitchThemeButton from '../../../assets/theme/SwitchThemeButton'
 import Menus from './Menus'
 
-import { pages as pagesConstants } from '../../shared/constants/pages'
-import blueShadowLogo from '../../assets/images/blueShadowLogo.png'
-import whiteShadowLogo from '../../assets/images/whiteShadowLogo.png'
+import { pages as pagesConstants } from '../../../shared/constants/pages'
+import blueShadowLogo from '../../../assets/images/blueShadowLogo.png'
+import whiteShadowLogo from '../../../assets/images/whiteShadowLogo.png'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
