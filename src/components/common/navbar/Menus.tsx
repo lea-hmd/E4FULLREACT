@@ -9,7 +9,7 @@ import {
     Typography,
 } from '@mui/material'
 
-import { Page } from '../../shared/types/Page'
+import { Page } from '../../../shared/types/Page'
 
 type MenuProps = {
     theme: Theme
