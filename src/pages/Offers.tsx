@@ -1,8 +1,11 @@
 import React from 'react'
+import { Grid, Theme, Container } from '@mui/material'
+
 import OfferCard from '../components/offers/OfferCard'
-import { Grid, Theme, Container, Typography } from '@mui/material'
-import { fakeOffers } from '../db/fakeOffers'
 import OffersFilter from '../components/offers/OffersFilter'
+import { SectionTitle } from '../components/common/titles/CustomTitles'
+
+import { fakeOffers } from '../db/fakeOffers'
 
 type OffersProps = {
     theme: Theme
@@ -13,7 +16,8 @@ export default function Offers({ theme }: OffersProps) {
 
     return (
         <Container>
-            <Typography variant="h3">/ Toutes les annonces</Typography>
+            <SectionTitle title="/ Toutes les annonces" />
+            {/* TODO: Léa - Change style later */}
             <Grid container justifyContent="center" alignItems="center">
                 <OffersFilter />
             </Grid>

@@ -44,7 +44,7 @@ export default function OfferCard({
             <CardContent>
                 <Chip
                     size="small"
-                    icon={<CheckroomIcon />}
+                    icon={<CheckroomIcon color="primary" />} //TODO: Léa - Change icons dynamically
                     label={category}
                     sx={{ px: 1, mb: 1 }}
                 />
