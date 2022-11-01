@@ -16,7 +16,7 @@ export default function Offers({ theme }: OffersProps) {
 
     return (
         <Container>
-            <SectionTitle title="/ Toutes les annonces" />
+            <SectionTitle title="Toutes les annonces" />
             {/* TODO: Léa - Change style later */}
             <Grid container justifyContent="center" alignItems="center">
                 <OffersFilter />

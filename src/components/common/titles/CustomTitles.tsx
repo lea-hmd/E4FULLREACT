@@ -14,7 +14,7 @@ export function SectionTitle({ title }: CustomTitlesProps) {
             fontWeight={'bold'}
             color="primary"
         >
-            {title}
+            {'/ ' + title}
         </Typography>
     )
 }

@@ -22,7 +22,7 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
     return (
         <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
             {/* TODO: Léa - Refactorisation du composant container */}
-            <SectionTitle title="/ Dernières annonces" />
+            <SectionTitle title="Dernières annonces" />
             {/* TODO: Léa - Change style later */}
             <Carousel
                 additionalTransfrom={0}

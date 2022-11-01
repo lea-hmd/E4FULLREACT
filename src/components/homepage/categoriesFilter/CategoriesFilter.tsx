@@ -17,7 +17,7 @@ export default function CategoriesFilter({ theme }: CategoriesFilterProps) {
         <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
             {/* TODO: Léa - Refactorisation du composant container */}
 
-            <SectionTitle title="/ Catégories d'annonces" />
+            <SectionTitle title="Catégories d'annonces" />
             <Grid container spacing={2}>
                 {offersCategories.map(({ category }, index) => (
                     <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
