@@ -7,6 +7,7 @@ import CarouselOfferCard from './CarouselOfferCard'
 import { SectionTitle } from '../../common/titles/CustomTitles'
 
 import { fakeOffers } from '../../../db/fakeOffers'
+import { categoryIcon } from '../../common/utils/utils'
 
 type OffersCarouselProps = {
     theme: Theme
@@ -16,6 +17,7 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
     //TODO: Léa - Change this data with the api response
     const offers = fakeOffers
     const xlScreen = useMediaQuery('(min-width:1440px)')
+    const iconSize = 'medium'
 
     return (
         <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
@@ -27,7 +29,6 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                 arrows
                 autoPlaySpeed={5000}
                 centerMode
-                draggable
                 focusOnSelect
                 infinite
                 keyBoardControl
@@ -87,12 +88,15 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                                 key={index}
                             >
                                 <CarouselOfferCard
+                                    categoryIcon={categoryIcon({
+                                        category,
+                                        iconSize,
+                                    })}
                                     {...{
                                         theme,
                                         title,
                                         description,
                                         price,
-                                        category,
                                         productPicture,
                                     }}
                                 />

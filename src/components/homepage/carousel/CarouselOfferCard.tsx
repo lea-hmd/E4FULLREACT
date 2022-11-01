@@ -9,14 +9,14 @@ import {
     Grid,
     Link as MuiLink,
 } from '@mui/material'
-import { Checkroom, Info } from '@mui/icons-material'
+import { Info } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
 type CarouselOfferCardProps = {
     theme: Theme
     title: string
     price: number
-    category: string
+    categoryIcon: React.ReactNode
     productPicture: any
 }
 
@@ -25,6 +25,7 @@ export default function CarouselOfferCard({
     title,
     price,
     productPicture,
+    categoryIcon,
 }: CarouselOfferCardProps) {
     return (
         <MuiLink component={Link} to="/" underline="none">
@@ -56,9 +57,7 @@ export default function CarouselOfferCard({
 
                     <Grid container alignItems="center" m={0.5}>
                         <Grid item container justifyContent="flex-start" xs={4}>
-                            <IconButton>
-                                <Checkroom color="primary" />
-                            </IconButton>
+                            <IconButton>{categoryIcon}</IconButton>
                             {/* TODO: Léa - Change icons dynamically */}
                         </Grid>
                         <Grid item container justifyContent="center" xs={4}>

@@ -7,14 +7,18 @@ import {
     Typography,
     Link as MuiLink,
 } from '@mui/material'
-import { Checkroom } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 type CategoryCardProps = {
     theme: Theme
     category: string
+    categoryIcon: React.ReactNode
 }
 
-export default function CategoryCard({ theme, category }: CategoryCardProps) {
+export default function CategoryCard({
+    theme,
+    category,
+    categoryIcon,
+}: CategoryCardProps) {
     return (
         <MuiLink component={Link} to="/" underline="none">
             {/* TODO: Léa - Fix redirection */}
@@ -27,7 +31,7 @@ export default function CategoryCard({ theme, category }: CategoryCardProps) {
                     },
                 }}
             >
-                <CardContent>
+                <CardContent sx={{ my: 2 }}>
                     <Grid
                         container
                         justifyContent="center"
@@ -40,7 +44,7 @@ export default function CategoryCard({ theme, category }: CategoryCardProps) {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            <Checkroom color="primary" fontSize="large" />
+                            {categoryIcon}
                         </Grid>
                         <Grid
                             item
