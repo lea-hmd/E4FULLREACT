@@ -8,8 +8,10 @@ import {
     CardActions,
     Button,
     Theme,
+    Link as MuiLink,
 } from '@mui/material'
 import CheckroomIcon from '@mui/icons-material/Checkroom'
+import { Link } from 'react-router-dom'
 
 type OfferCardProps = {
     theme: Theme
@@ -29,45 +31,58 @@ export default function OfferCard({
     productPicture,
 }: OfferCardProps) {
     return (
-        <Card
-            sx={{
-                maxWidth: 300,
-                backgroundColor: theme.palette.secondary.dark,
-            }}
-        >
-            <CardMedia
-                component="img"
-                height="170"
-                image={productPicture}
-                alt="Image de l'offre"
-            />
-            <CardContent>
-                <Chip
-                    size="small"
-                    icon={<CheckroomIcon color="primary" />} //TODO: Léa - Change icons dynamically
-                    label={category}
-                    sx={{ px: 1, mb: 1 }}
+        <MuiLink component={Link} to="/" underline="none">
+            {/* TODO: Léa - Fix redirection */}
+            <Card
+                sx={{
+                    backgroundColor: theme.palette.secondary.dark,
+                    '&:hover': {
+                        filter: 'brightness(80%)',
+                        cursor: 'pointer',
+                    },
+                }}
+            >
+                {/* TODO: Léa - Add Link component to card */}
+                <CardMedia
+                    component="img"
+                    height="170"
+                    image={productPicture}
+                    alt="Image de l'offre"
                 />
-                <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    color="primary.main"
-                >
-                    {title}
-                </Typography>
-                <Typography gutterBottom variant="body2" color="text.secondary">
-                    {description}
-                </Typography>
-                <Typography mt={1.5} variant="body1" color="text.primary">
-                    {price} €
-                </Typography>
-            </CardContent>
-            <CardActions sx={{ justifyContent: 'flex-end', mb: 1, mr: 1 }}>
-                <Button variant="contained" size="small">
-                    Détails de l'offre
-                </Button>
-            </CardActions>
-        </Card>
+                <CardContent>
+                    <Chip
+                        size="small"
+                        icon={<CheckroomIcon color="primary" />} //TODO: Léa - Change icons dynamically
+                        label={category}
+                        sx={{ px: 1, mb: 1 }}
+                    />
+                    <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        color="primary"
+                    >
+                        {title}
+                    </Typography>
+                    <Typography gutterBottom variant="body2" color="primary">
+                        {description}
+                    </Typography>
+                    <Typography
+                        mt={1.5}
+                        variant="body1"
+                        color="primary"
+                        fontWeight="bold"
+                    >
+                        {price} €
+                    </Typography>
+                </CardContent>
+                <CardActions sx={{ justifyContent: 'flex-end', mb: 1, mr: 1 }}>
+                    <Button variant="contained" size="small" color="primary">
+                        {/* TODO: Léa - Add Link component to button */}
+                        Détails de l'offre
+                    </Button>
+                </CardActions>
+            </Card>
+        </MuiLink>
     )
 }

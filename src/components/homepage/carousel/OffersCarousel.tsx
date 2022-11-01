@@ -18,7 +18,8 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
     const xlScreen = useMediaQuery('(min-width:1440px)')
 
     return (
-        <Container maxWidth={xlScreen ? 'lg' : 'md'}>
+        <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
+            {/* TODO: Léa - Refactorisation du composant container */}
             <SectionTitle title="/ Dernières annonces" />
             {/* TODO: Léa - Change style later */}
             <Carousel

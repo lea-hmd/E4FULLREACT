@@ -25,7 +25,12 @@ export default function Footer({ theme }: FooterProps) {
                     }}
                     variant="middle"
                 />
-                <Typography align="center" fontSize="13px" fontWeight="bold">
+                <Typography
+                    align="center"
+                    fontSize="13px"
+                    fontWeight="bold"
+                    color="primary"
+                >
                     &copy; Toraifōsu - {actualYear} - Tous droits réservés
                 </Typography>
             </Container>
