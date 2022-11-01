@@ -66,7 +66,10 @@ export default function App() {
                     <Routes>
                         {/* TODO: Léa - Change links and components props with the right params */}
                         <Route path="/">
-                            <Route index element={<Homepage />} />
+                            <Route
+                                index
+                                element={<Homepage {...{ theme }} />}
+                            />
                             <Route
                                 path="/annonces"
                                 element={<Offers {...{ theme }} />}

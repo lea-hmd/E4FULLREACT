@@ -4,7 +4,7 @@ import { OfferBody } from '../shared/types/OfferBody'
 export const fakeOffers: OfferBody[] = [
     {
         status_id: 1,
-        title: "Titre de l'offre",
+        title: 'first',
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
@@ -86,7 +86,7 @@ export const fakeOffers: OfferBody[] = [
     },
     {
         status_id: 9,
-        title: "Titre de l'offre",
+        title: 'last',
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
