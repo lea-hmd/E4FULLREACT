@@ -12,21 +12,22 @@ import {
 import { Info } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { categoryIcon } from '../../common/utils/utils'
+import noImage from '../../../assets/images/noImage.jpg'
 
 type CarouselOfferCardProps = {
     theme: Theme
     title: string
     price: number
-    machine_name: string
-    productPicture: any
+    category: string
+    product_picture: any
 }
 
 export default function CarouselOfferCard({
     theme,
     title,
     price,
-    productPicture,
-    machine_name,
+    product_picture,
+    category,
 }: CarouselOfferCardProps) {
     const iconSize = 'small'
     return (
@@ -35,6 +36,8 @@ export default function CarouselOfferCard({
             <Card
                 sx={{
                     backgroundColor: theme.palette.secondary.dark,
+                    width: '12em',
+                    height: '15em',
                     '&:hover': {
                         filter: 'brightness(80%)',
                         cursor: 'pointer',
@@ -45,11 +48,13 @@ export default function CarouselOfferCard({
                 <CardMedia
                     component="img"
                     height="130"
-                    image={productPicture}
+                    image={product_picture == null ? noImage : product_picture}
                     alt="Image de l'offre"
                 />
+
                 <CardContent>
                     <Typography
+                        noWrap
                         gutterBottom
                         variant="h6"
                         component="div"
@@ -62,7 +67,7 @@ export default function CarouselOfferCard({
                         <Grid item container justifyContent="flex-start" xs={4}>
                             <IconButton>
                                 {categoryIcon({
-                                    machine_name,
+                                    machine_name: category,
                                     iconSize,
                                 })}
                             </IconButton>

@@ -6,20 +6,40 @@ import { Grid, Theme } from '@mui/material'
 import CarouselOfferCard from './CarouselOfferCard'
 import { SectionTitle } from '../../common/titles/CustomTitles'
 
-import { fakeOffers } from '../../../db/fakeOffers'
 import CustomContainer from '../../common/custom/CustomContainer'
+import { RequestType } from '../../../shared/types/RequestType'
+import request from '../../../api/Request'
 
 type OffersCarouselProps = {
     theme: Theme
 }
 
 export default function OffersCarousel({ theme }: OffersCarouselProps) {
-    //TODO: Léa - Change this data with the api response
-    const offers = fakeOffers
+    const [offers, setOffers] = React.useState([])
+
+    const requestParams: RequestType = {
+        endpoint: '/search?key=',
+        method: 'GET',
+    }
+
+    async function getOffers() {
+        try {
+            await request(requestParams)
+                .then((response) => response.json())
+                .then((data) => setOffers(data))
+        } catch (error: any) {
+            // eslint-disable-next-line no-console
+            console.log(error)
+        }
+    }
+
+    React.useEffect(() => {
+        getOffers()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <CustomContainer>
-            {/* TODO: Léa - Refactorisation du composant container */}
             <SectionTitle title="Dernières annonces" />
             {/* TODO: Léa - Change style later */}
             <Carousel
@@ -70,7 +90,7 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                 {offers
                     .map(
                         (
-                            { title, price, productPicture, machine_name },
+                            { title, price, product_picture, category },
                             index
                         ) => (
                             <Grid
@@ -84,8 +104,8 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                                         theme,
                                         title,
                                         price,
-                                        productPicture,
-                                        machine_name,
+                                        product_picture,
+                                        category,
                                     }}
                                 />
                             </Grid>
