@@ -38,6 +38,7 @@ export default function Homepage({ theme }: HomepageProps) {
 
     return (
         <>
+            {/* TODO: Léa - Redirection on category click and on carousel offer click */}
             <Banderole {...{ offers }} />
             <CategoriesFilter {...{ theme }} />
             <OffersCarousel {...{ theme, offers }} />
