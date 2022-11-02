@@ -10,8 +10,8 @@ import {
     Theme,
     Link as MuiLink,
 } from '@mui/material'
-import CheckroomIcon from '@mui/icons-material/Checkroom'
 import { Link } from 'react-router-dom'
+import { categoryIcon, categoryName } from '../common/utils/utils'
 
 type OfferCardProps = {
     theme: Theme
@@ -30,6 +30,8 @@ export default function OfferCard({
     category,
     productPicture,
 }: OfferCardProps) {
+    const iconSize = 'medium'
+
     return (
         <MuiLink component={Link} to="/" underline="none">
             {/* TODO: Léa - Fix redirection */}
@@ -52,8 +54,8 @@ export default function OfferCard({
                 <CardContent>
                     <Chip
                         size="small"
-                        icon={<CheckroomIcon color="primary" />} //TODO: Léa - Change icons dynamically
-                        label={category}
+                        icon={categoryIcon({ category, iconSize })} //TODO: Léa - Change icons dynamically
+                        label={categoryName(category)}
                         sx={{ px: 1, mb: 1 }}
                     />
                     <Typography
