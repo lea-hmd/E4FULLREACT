@@ -11,12 +11,13 @@ import {
 } from '@mui/material'
 import { Info } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+import { categoryIcon } from '../../common/utils/utils'
 
 type CarouselOfferCardProps = {
     theme: Theme
     title: string
     price: number
-    categoryIcon: React.ReactNode
+    category: string
     productPicture: any
 }
 
@@ -25,8 +26,9 @@ export default function CarouselOfferCard({
     title,
     price,
     productPicture,
-    categoryIcon,
+    category,
 }: CarouselOfferCardProps) {
+    const iconSize = 'small'
     return (
         <MuiLink component={Link} to="/" underline="none">
             {/* TODO: Léa - Fix redirection */}
@@ -37,6 +39,7 @@ export default function CarouselOfferCard({
                         filter: 'brightness(80%)',
                         cursor: 'pointer',
                     },
+                    m: 1,
                 }}
             >
                 <CardMedia
@@ -57,7 +60,12 @@ export default function CarouselOfferCard({
 
                     <Grid container alignItems="center" m={0.5}>
                         <Grid item container justifyContent="flex-start" xs={4}>
-                            <IconButton>{categoryIcon}</IconButton>
+                            <IconButton>
+                                {categoryIcon({
+                                    category,
+                                    iconSize,
+                                })}
+                            </IconButton>
                             {/* TODO: Léa - Change icons dynamically */}
                         </Grid>
                         <Grid item container justifyContent="center" xs={4}>

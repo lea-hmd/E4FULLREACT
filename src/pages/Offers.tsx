@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Theme, Container } from '@mui/material'
+import { Grid, Theme, Container, useMediaQuery } from '@mui/material'
 
 import OfferCard from '../components/offers/OfferCard'
 import OffersFilter from '../components/offers/OffersFilter'
@@ -13,9 +13,10 @@ type OffersProps = {
 export default function Offers({ theme }: OffersProps) {
     //TODO: Léa - Change this data with the api response
     const offers = fakeOffers
+    const xlScreen = useMediaQuery('(min-width:1440px)')
 
     return (
-        <Container>
+        <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
             <SectionTitle title="Toutes les annonces" />
             {/* TODO: Léa - Change style later */}
             <Grid container justifyContent="center" alignItems="center">
@@ -39,7 +40,7 @@ export default function Offers({ theme }: OffersProps) {
                             key={index}
                             sm={6}
                             md={4}
-                            lg={3}
+                            xl={3}
                         >
                             <OfferCard
                                 {...{
