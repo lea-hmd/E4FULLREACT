@@ -1,11 +1,13 @@
 import React from 'react'
-import { fakeOffers } from '../../../db/fakeOffers'
 import { Typography, CardMedia } from '@mui/material'
 import BanderoleImage from '../../../assets/images/banderole.jpg'
 import CustomContainer from '../../common/custom/CustomContainer'
 
-export default function Banderole() {
-    const offers = fakeOffers //TODO: Léa - Change this all offers endpoint
+type BanderoleProps = {
+    offers: any
+}
+
+export default function Banderole({ offers }: BanderoleProps) {
     return (
         <CustomContainer>
             <div style={{ position: 'relative' }}>

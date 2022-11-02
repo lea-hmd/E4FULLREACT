@@ -7,37 +7,13 @@ import CarouselOfferCard from './CarouselOfferCard'
 import { SectionTitle } from '../../common/titles/CustomTitles'
 
 import CustomContainer from '../../common/custom/CustomContainer'
-import { RequestType } from '../../../shared/types/RequestType'
-import request from '../../../api/Request'
 
 type OffersCarouselProps = {
     theme: Theme
+    offers: any
 }
 
-export default function OffersCarousel({ theme }: OffersCarouselProps) {
-    const [offers, setOffers] = React.useState([])
-
-    const requestParams: RequestType = {
-        endpoint: '/search?key=',
-        method: 'GET',
-    }
-
-    async function getOffers() {
-        try {
-            await request(requestParams)
-                .then((response) => response.json())
-                .then((data) => setOffers(data))
-        } catch (error: any) {
-            // eslint-disable-next-line no-console
-            console.log(error)
-        }
-    }
-
-    React.useEffect(() => {
-        getOffers()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+export default function OffersCarousel({ theme, offers }: OffersCarouselProps) {
     return (
         <CustomContainer>
             <SectionTitle title="Dernières annonces" />
@@ -90,8 +66,8 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                 {offers
                     .map(
                         (
-                            { title, price, product_picture, category },
-                            index
+                            { title, price, product_picture, category }: any,
+                            index: React.Key
                         ) => (
                             <Grid
                                 item
