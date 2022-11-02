@@ -1,12 +1,13 @@
 import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import { Grid, Theme, Container, useMediaQuery } from '@mui/material'
+import { Grid, Theme } from '@mui/material'
 
 import CarouselOfferCard from './CarouselOfferCard'
 import { SectionTitle } from '../../common/titles/CustomTitles'
 
 import { fakeOffers } from '../../../db/fakeOffers'
+import CustomContainer from '../../common/custom/CustomContainer'
 
 type OffersCarouselProps = {
     theme: Theme
@@ -15,10 +16,9 @@ type OffersCarouselProps = {
 export default function OffersCarousel({ theme }: OffersCarouselProps) {
     //TODO: Léa - Change this data with the api response
     const offers = fakeOffers
-    const xlScreen = useMediaQuery('(min-width:1440px)')
 
     return (
-        <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
+        <CustomContainer>
             {/* TODO: Léa - Refactorisation du composant container */}
             <SectionTitle title="Dernières annonces" />
             {/* TODO: Léa - Change style later */}
@@ -70,13 +70,7 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                 {offers
                     .map(
                         (
-                            {
-                                title,
-                                description,
-                                price,
-                                category,
-                                productPicture,
-                            },
+                            { title, price, productPicture, machine_name },
                             index
                         ) => (
                             <Grid
@@ -89,10 +83,9 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                                     {...{
                                         theme,
                                         title,
-                                        category,
-                                        description,
                                         price,
                                         productPicture,
+                                        machine_name,
                                     }}
                                 />
                             </Grid>
@@ -101,6 +94,6 @@ export default function OffersCarousel({ theme }: OffersCarouselProps) {
                     .reverse()
                     .slice(0, 5)}
             </Carousel>
-        </Container>
+        </CustomContainer>
     )
 }

@@ -17,7 +17,7 @@ type CarouselOfferCardProps = {
     theme: Theme
     title: string
     price: number
-    category: string
+    machine_name: string
     productPicture: any
 }
 
@@ -26,7 +26,7 @@ export default function CarouselOfferCard({
     title,
     price,
     productPicture,
-    category,
+    machine_name,
 }: CarouselOfferCardProps) {
     const iconSize = 'small'
     return (
@@ -62,7 +62,7 @@ export default function CarouselOfferCard({
                         <Grid item container justifyContent="flex-start" xs={4}>
                             <IconButton>
                                 {categoryIcon({
-                                    category,
+                                    machine_name,
                                     iconSize,
                                 })}
                             </IconButton>

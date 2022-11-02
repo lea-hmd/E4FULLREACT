@@ -1,11 +1,12 @@
 import React from 'react'
-import { Grid, Theme, Container, useMediaQuery } from '@mui/material'
+import { Grid, Theme } from '@mui/material'
 
 import OfferCard from '../components/offers/OfferCard'
 import OffersFilter from '../components/offers/OffersFilter'
 import { SectionTitle } from '../components/common/titles/CustomTitles'
 
 import { fakeOffers } from '../db/fakeOffers'
+import CustomContainer from '../components/common/custom/CustomContainer'
 
 type OffersProps = {
     theme: Theme
@@ -13,10 +14,9 @@ type OffersProps = {
 export default function Offers({ theme }: OffersProps) {
     //TODO: Léa - Change this data with the api response
     const offers = fakeOffers
-    const xlScreen = useMediaQuery('(min-width:1440px)')
 
     return (
-        <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
+        <CustomContainer>
             <SectionTitle title="Toutes les annonces" />
             {/* TODO: Léa - Change style later */}
             <Grid container justifyContent="center" alignItems="center">
@@ -30,7 +30,13 @@ export default function Offers({ theme }: OffersProps) {
             >
                 {offers.map(
                     (
-                        { title, description, price, category, productPicture },
+                        {
+                            title,
+                            description,
+                            price,
+                            machine_name,
+                            productPicture,
+                        },
                         index
                     ) => (
                         <Grid
@@ -48,7 +54,7 @@ export default function Offers({ theme }: OffersProps) {
                                     title,
                                     description,
                                     price,
-                                    category,
+                                    machine_name,
                                     productPicture,
                                 }}
                             />
@@ -56,6 +62,6 @@ export default function Offers({ theme }: OffersProps) {
                     )
                 )}
             </Grid>
-        </Container>
+        </CustomContainer>
     )
 }

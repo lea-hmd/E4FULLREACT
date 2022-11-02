@@ -8,14 +8,19 @@ import {
     Link as MuiLink,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import { categoryIcon, categoryName } from '../../common/utils/utils'
+import { categoryIcon } from '../../common/utils/utils'
 
 type CategoryCardProps = {
     theme: Theme
-    category: string
+    machine_name: string
+    label: string
 }
 
-export default function CategoryCard({ theme, category }: CategoryCardProps) {
+export default function CategoryCard({
+    theme,
+    machine_name,
+    label,
+}: CategoryCardProps) {
     const iconSize = 'large'
     return (
         <MuiLink component={Link} to="/" underline="none">
@@ -42,8 +47,7 @@ export default function CategoryCard({ theme, category }: CategoryCardProps) {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            {categoryIcon({ category, iconSize })}
-                            {/* TODO: Léa - Make categories unique */}
+                            {categoryIcon({ machine_name, iconSize })}
                         </Grid>
                         <Grid
                             item
@@ -57,7 +61,7 @@ export default function CategoryCard({ theme, category }: CategoryCardProps) {
                                 fontWeight="bold"
                                 color="primary"
                             >
-                                {categoryName(category)}
+                                {label}
                             </Typography>
                         </Grid>
                     </Grid>

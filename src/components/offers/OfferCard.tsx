@@ -18,7 +18,7 @@ type OfferCardProps = {
     title: string
     description: string
     price: number
-    category: string
+    machine_name: string
     productPicture: any
 }
 
@@ -27,7 +27,7 @@ export default function OfferCard({
     title,
     description,
     price,
-    category,
+    machine_name,
     productPicture,
 }: OfferCardProps) {
     const iconSize = 'medium'
@@ -54,8 +54,8 @@ export default function OfferCard({
                 <CardContent>
                     <Chip
                         size="small"
-                        icon={categoryIcon({ category, iconSize })} //TODO: Léa - Change icons dynamically
-                        label={categoryName(category)}
+                        icon={categoryIcon({ machine_name, iconSize })} //TODO: Léa - Change icons dynamically
+                        label={categoryName(machine_name)}
                         sx={{ px: 1, mb: 1 }}
                     />
                     <Typography
