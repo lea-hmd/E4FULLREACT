@@ -8,7 +8,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'REAL_ESTATE',
+        machine_name: 'REAL_ESTATE',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -18,7 +18,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'IT',
+        machine_name: 'IT',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -28,7 +28,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'AUTOMATION',
+        machine_name: 'AUTOMATION',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -38,7 +38,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'HOME_FURNISHINGS',
+        machine_name: 'HOME_FURNISHINGS',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -48,7 +48,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'OTHER_FURNITURE',
+        machine_name: 'OTHER_FURNITURE',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -59,7 +59,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'CLOTHES',
+        machine_name: 'CLOTHES',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -69,7 +69,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'OTHERS',
+        machine_name: 'OTHERS',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -80,7 +80,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'Catégorie',
+        machine_name: 'Catégorie',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },
@@ -90,7 +90,7 @@ export const fakeOffers: OfferBody[] = [
         description:
             "Description de l'offre Description de l'offre Description de l'offre",
         price: 550,
-        category: 'Catégorie',
+        machine_name: 'Catégorie',
         productPicture:
             'https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg',
     },

@@ -1,14 +1,16 @@
 import React from 'react'
-import { fakeOffers } from '../../../db/fakeOffers'
-import { Typography, Container, useMediaQuery, CardMedia } from '@mui/material'
-import BanderoleImage from '../../../assets/images/banderole.jpg'
+import { Typography, CardMedia } from '@mui/material'
 
-export default function Banderole() {
-    const xlScreen = useMediaQuery('(min-width:1440px)')
-    const offers = fakeOffers //TODO: Léa - Change this all offers endpoint
+import BanderoleImage from '../../../assets/images/banderole.jpg'
+import CustomContainer from '../../common/custom/CustomContainer'
+
+type BanderoleProps = {
+    offers: any
+}
+
+export default function Banderole({ offers }: BanderoleProps) {
     return (
-        <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
-            {/* TODO: Léa - Refactorisation du composant container */}
+        <CustomContainer>
             <div style={{ position: 'relative' }}>
                 <CardMedia
                     style={{
@@ -40,6 +42,6 @@ export default function Banderole() {
                     </Typography>
                 </div>
             </div>
-        </Container>
+        </CustomContainer>
     )
 }

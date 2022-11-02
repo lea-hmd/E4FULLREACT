@@ -9,12 +9,12 @@ import {
 } from '@mui/icons-material'
 
 type CategoryIconProps = {
-    category: string
+    machine_name: string
     iconSize: 'small' | 'inherit' | 'large' | 'medium' | undefined
 }
 
-export function categoryIcon({ category, iconSize }: CategoryIconProps) {
-    switch (category) {
+export function categoryIcon({ machine_name, iconSize }: CategoryIconProps) {
+    switch (machine_name) {
         case 'REAL_ESTATE':
             return <Apartment color="primary" fontSize={iconSize} />
         case 'IT':
@@ -32,8 +32,8 @@ export function categoryIcon({ category, iconSize }: CategoryIconProps) {
     }
 }
 
-export function categoryName(category: string) {
-    switch (category) {
+export function categoryName(machine_name: string) {
+    switch (machine_name) {
         case 'REAL_ESTATE':
             return 'Immobilier'
         case 'IT':
