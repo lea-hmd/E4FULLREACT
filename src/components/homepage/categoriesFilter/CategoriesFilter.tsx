@@ -1,29 +1,49 @@
 import React from 'react'
-import { Theme, Container, useMediaQuery, Grid } from '@mui/material'
+import { Theme, Grid } from '@mui/material'
 import { SectionTitle } from '../../common/titles/CustomTitles'
 import CategoryCard from './CategoryCard'
-import { fakeOffers } from '../../../db/fakeOffers'
+import { RequestType } from '../../../shared/types/RequestType'
+import request from '../../../api/Request'
+import CustomContainer from '../../common/custom/CustomContainer'
 
 type CategoriesFilterProps = {
     theme: Theme
 }
 
 export default function CategoriesFilter({ theme }: CategoriesFilterProps) {
-    const xlScreen = useMediaQuery('(min-width:1440px)')
-    const offersCategories = fakeOffers
+    const [categories, setCategories] = React.useState([])
+
+    const requestParams: RequestType = {
+        endpoint: '/offers-categories',
+        method: 'GET',
+    }
+
+    async function getCategories() {
+        try {
+            await request(requestParams)
+                .then((response) => response.json())
+                .then((data) => setCategories(data))
+        } catch (error: any) {
+            // eslint-disable-next-line no-console
+            console.log(error)
+        }
+    }
+
+    React.useEffect(() => {
+        getCategories()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
-        <Container maxWidth={xlScreen ? 'lg' : 'md'} sx={{ mb: 7 }}>
-            {/* TODO: Léa - Refactorisation du composant container */}
-
+        <CustomContainer>
             <SectionTitle title="Catégories d'annonces" />
             <Grid container spacing={2}>
-                {offersCategories.map(({ category }, index) => (
+                {categories.map(({ label, machine_name }, index) => (
                     <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
-                        <CategoryCard {...{ theme, category }} />
+                        <CategoryCard {...{ theme, machine_name, label }} />
                     </Grid>
                 ))}
             </Grid>
-        </Container>
+        </CustomContainer>
     )
 }
