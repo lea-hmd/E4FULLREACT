@@ -5,7 +5,6 @@ import { Grid, Theme } from '@mui/material'
 
 import CarouselOfferCard from './CarouselOfferCard'
 import { SectionTitle } from '../../common/titles/CustomTitles'
-
 import CustomContainer from '../../common/custom/CustomContainer'
 
 type OffersCarouselProps = {

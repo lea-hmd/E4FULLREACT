@@ -1,10 +1,12 @@
 import React from 'react'
 import { Theme, Grid } from '@mui/material'
+
 import { SectionTitle } from '../../common/titles/CustomTitles'
 import CategoryCard from './CategoryCard'
+import CustomContainer from '../../common/custom/CustomContainer'
+
 import { RequestType } from '../../../shared/types/RequestType'
 import request from '../../../api/Request'
-import CustomContainer from '../../common/custom/CustomContainer'
 
 type CategoriesFilterProps = {
     theme: Theme

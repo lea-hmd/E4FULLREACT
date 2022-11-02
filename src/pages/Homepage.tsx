@@ -1,8 +1,10 @@
 import React from 'react'
-import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import { Theme } from '@mui/material'
+
 import CategoriesFilter from '../components/homepage/categoriesFilter/CategoriesFilter'
+import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import Banderole from '../components/homepage/banderole/Banderole'
+
 import { RequestType } from '../shared/types/RequestType'
 import request from '../api/Request'
 

@@ -8,6 +8,7 @@ import {
     Link as MuiLink,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
+
 import { categoryIcon } from '../../common/utils/utils'
 
 type CategoryCardProps = {

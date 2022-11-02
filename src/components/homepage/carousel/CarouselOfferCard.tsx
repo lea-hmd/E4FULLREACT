@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import { Info } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+
 import { categoryIcon } from '../../common/utils/utils'
 import noImage from '../../../assets/images/noImage.jpg'
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography, CardMedia } from '@mui/material'
+
 import BanderoleImage from '../../../assets/images/banderole.jpg'
 import CustomContainer from '../../common/custom/CustomContainer'
 
