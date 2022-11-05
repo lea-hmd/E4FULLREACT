@@ -4,6 +4,6 @@ export const Colors = {
     navyBlue: '#08345E',
     lightBlue: '#3C91E6',
     orange: '#EF7A43',
-    beige: '#F1EAE4',
+    beige: '#E9E0D8',
     lightWhite: '#F5F1ED',
 }
