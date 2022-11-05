@@ -9,8 +9,12 @@ import {
     Button,
     Theme,
     Link as MuiLink,
+    Grid,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
+
+import noImage from '../../assets/images/noImage.jpg'
 import { categoryIcon, categoryName } from '../common/utils/utils'
 
 type OfferCardProps = {
@@ -18,8 +22,9 @@ type OfferCardProps = {
     title: string
     description: string
     price: number
-    machine_name: string
-    productPicture: any
+    category: string
+    product_picture: any
+    created_at: string
 }
 
 export default function OfferCard({
@@ -27,8 +32,9 @@ export default function OfferCard({
     title,
     description,
     price,
-    machine_name,
-    productPicture,
+    category,
+    product_picture,
+    created_at,
 }: OfferCardProps) {
     const iconSize = 'medium'
 
@@ -38,6 +44,7 @@ export default function OfferCard({
             <Card
                 sx={{
                     backgroundColor: theme.palette.secondary.dark,
+                    width: '17em',
                     '&:hover': {
                         filter: 'brightness(80%)',
                         cursor: 'pointer',
@@ -48,17 +55,21 @@ export default function OfferCard({
                 <CardMedia
                     component="img"
                     height="170"
-                    image={productPicture}
+                    image={product_picture == null ? noImage : product_picture}
                     alt="Image de l'offre"
                 />
                 <CardContent>
                     <Chip
                         size="small"
-                        icon={categoryIcon({ machine_name, iconSize })} //TODO: Léa - Change icons dynamically
-                        label={categoryName(machine_name)}
-                        sx={{ px: 1, mb: 1 }}
+                        icon={categoryIcon({
+                            machine_name: category,
+                            iconSize,
+                        })}
+                        label={categoryName(category)}
+                        sx={{ px: 1, mb: 2 }}
                     />
                     <Typography
+                        noWrap
                         gutterBottom
                         variant="h5"
                         component="div"
@@ -66,8 +77,13 @@ export default function OfferCard({
                     >
                         {title}
                     </Typography>
-                    <Typography gutterBottom variant="body2" color="primary">
-                        {description}
+                    <Typography
+                        noWrap
+                        gutterBottom
+                        variant="body2"
+                        color="primary"
+                    >
+                        {description ?? 'Pas de description'}
                     </Typography>
                     <Typography
                         mt={1.5}
@@ -78,11 +94,28 @@ export default function OfferCard({
                         {price} €
                     </Typography>
                 </CardContent>
-                <CardActions sx={{ justifyContent: 'flex-end', mb: 1, mr: 1 }}>
-                    <Button variant="contained" size="small" color="primary">
-                        {/* TODO: Léa - Add Link component to button */}
-                        Détails de l'offre
-                    </Button>
+                <CardActions>
+                    <Grid container alignItems="center" sx={{ mx: 1, mb: 1 }}>
+                        <Grid item xs={6}>
+                            <Typography
+                                variant="body1"
+                                color="primary"
+                                fontWeight="bold"
+                            >
+                                {moment(created_at).format('DD/MM/YYYY')}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={6} container justifyContent="flex-end">
+                            <Button
+                                variant="contained"
+                                size="small"
+                                color="primary"
+                            >
+                                {/* TODO: Léa - Add Link component to button */}
+                                Détails
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </CardActions>
             </Card>
         </MuiLink>

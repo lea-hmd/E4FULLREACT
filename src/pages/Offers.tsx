@@ -1,67 +1,52 @@
 import React from 'react'
-import { Grid, Theme } from '@mui/material'
+import { Theme } from '@mui/material'
 
-import OfferCard from '../components/offers/OfferCard'
 import OffersFilter from '../components/offers/OffersFilter'
-import { SectionTitle } from '../components/common/titles/CustomTitles'
-
-import { fakeOffers } from '../db/fakeOffers'
 import CustomContainer from '../components/common/custom/CustomContainer'
+import FilteredOffers from '../components/offers/FilteredOffers'
+
+import { RequestType } from '../shared/types/RequestType'
+import request from '../api/Request'
 
 type OffersProps = {
     theme: Theme
 }
 export default function Offers({ theme }: OffersProps) {
-    //TODO: Léa - Change this data with the api response
-    const offers = fakeOffers
+    const [searchValue, setSearchValue] = React.useState('')
+    const [filteredOffers, setFilteredOffers] = React.useState([])
+
+    const handleSearchValueChange = (event: React.BaseSyntheticEvent) => {
+        setSearchValue(event.target.value)
+    }
+
+    const requestParams: RequestType = {
+        endpoint: '/search?key=' + searchValue,
+        method: 'GET',
+    }
+
+    async function getFilteredOffers() {
+        try {
+            await request(requestParams)
+                .then((response) => response.json())
+                .then((data) => setFilteredOffers(data))
+        } catch (error: any) {
+            // eslint-disable-next-line no-console
+            console.log(error)
+        }
+    }
+
+    React.useEffect(() => {
+        getFilteredOffers()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchValue])
 
     return (
         <CustomContainer>
-            <SectionTitle title="Toutes les annonces" />
             {/* TODO: Léa - Change style later */}
-            <Grid container justifyContent="center" alignItems="center">
-                <OffersFilter />
-            </Grid>
-            <Grid
-                container
-                alignItems="center"
-                justifyContent="center"
-                spacing={3}
-            >
-                {offers.map(
-                    (
-                        {
-                            title,
-                            description,
-                            price,
-                            machine_name,
-                            productPicture,
-                        },
-                        index
-                    ) => (
-                        <Grid
-                            item
-                            container
-                            justifyContent="center"
-                            key={index}
-                            sm={6}
-                            md={4}
-                            xl={3}
-                        >
-                            <OfferCard
-                                {...{
-                                    theme,
-                                    title,
-                                    description,
-                                    price,
-                                    machine_name,
-                                    productPicture,
-                                }}
-                            />
-                        </Grid>
-                    )
-                )}
-            </Grid>
+            <OffersFilter
+                {...{ theme, searchValue, handleSearchValueChange }}
+            />
+            <FilteredOffers {...{ theme, filteredOffers }} />
         </CustomContainer>
     )
 }
