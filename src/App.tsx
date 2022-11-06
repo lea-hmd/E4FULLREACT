@@ -24,7 +24,7 @@ import PageNotFound from './pages/PageNotFound'
 
 export default function App() {
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    const [loggedIn, setLoggedIn] = React.useState(false) //TODO: Léa - Finish this when connection functionality is done
+    const [loggedIn, setLoggedIn] = React.useState<boolean>(false) //TODO: Léa - Finish this when connection functionality is done
 
     // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -94,7 +94,7 @@ export default function App() {
                         <Route path="/deconnexion" element={<Logout />} />
                         <Route
                             path="/connexion"
-                            element={<Login {...{ theme }} />}
+                            element={<Login {...{ theme, setLoggedIn }} />}
                         />
                         <Route path="/inscription" element={<Signin />} />
                         <Route path="*" element={<PageNotFound />} />

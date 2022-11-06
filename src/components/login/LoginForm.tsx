@@ -25,9 +25,10 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 type LoginFormProps = {
     theme: Theme
+    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function LoginForm({ theme }: LoginFormProps) {
+export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [showPassword, setShowPassword] = React.useState(false)
@@ -76,6 +77,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
                     if (data.token) {
                         localStorage.setItem('Token', data.token.token)
                         navigate('/')
+                        setLoggedIn(true)
                     }
                 })
         } catch (error: any) {
