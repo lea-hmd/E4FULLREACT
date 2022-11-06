@@ -7,7 +7,7 @@ export default function request({
     customHeaders = {},
 }: RequestType) {
     //Mettre l'url de son back
-    const url = 'http://localhost:3333' + endpoint
+    const url = 'http://localhost:8082' + endpoint
     const headers = new Headers({
         'Content-Type': 'application/json',
         ...customHeaders,
