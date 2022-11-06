@@ -1,7 +1,7 @@
 import React from 'react'
 import { Theme, Grid } from '@mui/material'
 
-import { SectionTitle } from '../../common/titles/CustomTitles'
+import { SectionTitle } from '../../common/custom/CustomTitles'
 import CategoryCard from './CategoryCard'
 import CustomContainer from '../../common/custom/CustomContainer'
 

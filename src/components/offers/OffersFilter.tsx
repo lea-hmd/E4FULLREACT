@@ -6,7 +6,7 @@ import {
     InputAdornment,
     FormControl,
 } from '@mui/material'
-import { SectionTitle } from '../common/titles/CustomTitles'
+import { SectionTitle } from '../common/custom/CustomTitles'
 import { Search } from '@mui/icons-material'
 
 type OffersFilterProps = {
