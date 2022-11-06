@@ -1,5 +1,6 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, Grid, Link, TextField } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import request from '../api/Request'
 import { LoginBody } from '../shared/types/LoginBody'
 import { RequestType } from '../shared/types/RequestType'
@@ -11,6 +12,8 @@ export default function Login() {
     }
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+
+    const navigate = useNavigate()
 
     const requestBody: LoginBody = {
         email,
@@ -39,6 +42,7 @@ export default function Login() {
             // eslint-disable-next-line no-console
             console.log(error)
         }
+        navigate('/')
     }
     return (
         <>
@@ -52,6 +56,7 @@ export default function Login() {
                 <TextField
                     sx={style}
                     id="outlined-basic"
+                    value={email}
                     label="E-mail"
                     variant="outlined"
                     onChange={(e) => {
@@ -61,12 +66,17 @@ export default function Login() {
                 <TextField
                     sx={style}
                     id="outlined-basic"
+                    type="password"
+                    value={password}
                     label="Mot de passe"
                     variant="outlined"
                     onChange={(e) => {
                         setPassword(e.target.value)
                     }}
                 />
+                <Link href="/ForgotPassword" underline="hover">
+                    {'Mot de passe oublié'}
+                </Link>
                 <Button
                     variant="outlined"
                     sx={{ margin: '2rem auto', width: '80%' }}
