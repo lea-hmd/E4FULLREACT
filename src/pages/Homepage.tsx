@@ -10,9 +10,14 @@ import request from '../api/Request'
 
 type HomepageProps = {
     theme: Theme
+    // eslint-disable-next-line no-unused-vars
+    handleCategoryClicked: (machine_name: string) => void
 }
 
-export default function Homepage({ theme }: HomepageProps) {
+export default function Homepage({
+    theme,
+    handleCategoryClicked,
+}: HomepageProps) {
     const [offers, setOffers] = React.useState([])
 
     const requestParams: RequestType = {
@@ -38,9 +43,9 @@ export default function Homepage({ theme }: HomepageProps) {
 
     return (
         <>
-            {/* TODO: Léa - Redirection on category click and on carousel offer click */}
+            {/* TODO: Léa - Redirection on carousel offer click */}
             <Banderole {...{ offers }} />
-            <CategoriesFilter {...{ theme }} />
+            <CategoriesFilter {...{ theme, handleCategoryClicked }} />
             <OffersCarousel {...{ theme, offers }} />
         </>
     )

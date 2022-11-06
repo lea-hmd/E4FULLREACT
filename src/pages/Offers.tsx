@@ -10,17 +10,19 @@ import request from '../api/Request'
 
 type OffersProps = {
     theme: Theme
+    hpCategory: string
 }
-export default function Offers({ theme }: OffersProps) {
+export default function Offers({ theme, hpCategory }: OffersProps) {
     const [searchValue, setSearchValue] = React.useState('')
     const [filteredOffers, setFilteredOffers] = React.useState([])
+    const [categoryHp, setCategoryHp] = React.useState(hpCategory)
 
     const handleSearchValueChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
     }
 
     const requestParams: RequestType = {
-        endpoint: '/search?key=' + searchValue,
+        endpoint: '/search?key=' + searchValue + '&category=' + categoryHp,
         method: 'GET',
     }
 
@@ -37,12 +39,14 @@ export default function Offers({ theme }: OffersProps) {
 
     React.useEffect(() => {
         getFilteredOffers()
+        setCategoryHp('')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchValue])
 
     return (
         <CustomContainer>
             {/* TODO: Léa - Change style later */}
+            {/* TODO: Léa - Check the right category checkboxe when homepage category redirection */}
             <OffersFilter
                 {...{ theme, searchValue, handleSearchValueChange }}
             />
