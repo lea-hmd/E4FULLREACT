@@ -40,7 +40,35 @@ export const ThemeConfig = (prefersDarkMode: boolean) => {
 
     // Crée le thème avec la palette récupérée
     const dynamicTheme = createTheme(
-        getPalette(prefersDarkMode ? 'dark' : 'light')
+        getPalette(prefersDarkMode ? 'dark' : 'light'),
+        {
+            typography: {
+                h1: {
+                    fontFamily: ['Rubik', 'sans-serif'].join(','),
+                },
+                h2: {
+                    fontFamily: ['Rubik', 'sans-serif'].join(','),
+                },
+                h3: {
+                    fontFamily: ['Rubik', 'sans-serif'].join(','),
+                },
+                h4: {
+                    fontFamily: ['Rubik', 'sans-serif'].join(','),
+                },
+                h5: {
+                    fontFamily: ['Rubik', 'sans-serif'].join(','),
+                },
+                h6: {
+                    fontFamily: ['Rubik', 'sans-serif'].join(','),
+                },
+                body1: {
+                    fontFamily: ['Open Sans', 'sans-serif'].join(','),
+                },
+                body2: {
+                    fontFamily: ['Open Sans', 'sans-serif'].join(','),
+                },
+            },
+        }
     )
 
     return dynamicTheme
