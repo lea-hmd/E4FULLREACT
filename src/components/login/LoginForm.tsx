@@ -171,11 +171,7 @@ export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
                             </FormControl>
                         </Grid>
                     </Grid>
-                    <MuiLink
-                        component={Link}
-                        to="/reinitialiser-mot-de-passe"
-                        underline="none"
-                    >
+                    <MuiLink component={Link} to="/reinitialiser-mot-de-passe">
                         Mot de passe oublié ?
                     </MuiLink>
                 </CardContent>

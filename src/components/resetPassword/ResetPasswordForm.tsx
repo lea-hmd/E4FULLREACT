@@ -36,6 +36,38 @@ export default function ResetPasswordForm({ theme }: ResetPasswordFormProps) {
         setEmail(event.target.value)
     }
 
+    // Requête de réinitialisation de mot de passe
+
+    // const requestBody = {
+    //     email,
+    // }
+
+    // const requestParams: RequestType = {
+    //     endpoint: '/resetPassword',
+    //     method: 'POST',
+    //     body: requestBody,
+    // }
+
+    // async function resetPassword() {
+    //     try {
+    //         await request(requestParams).then((response) => {
+    //             if (response.status >= 400 && response.status < 600) {
+    //                 throw
+    //                 new Error('Bad response from server')
+    //             } else return setResetConfirmation(true)
+    //         })
+    //     } catch (error: any) {
+    //         // eslint-disable-next-line no-console
+    //         console.error(error)
+    //     }
+    // }
+
+    const handleResetPassword = (event: React.BaseSyntheticEvent) => {
+        event.preventDefault()
+        // resetPassword()
+        setResetConfirmation(true)
+    }
+
     return (
         <Grid container justifyContent="center" alignItems="center">
             <Card
@@ -107,7 +139,7 @@ export default function ResetPasswordForm({ theme }: ResetPasswordFormProps) {
                             ) : (
                                 <Button
                                     variant="contained"
-                                    onClick={() => setResetConfirmation(true)}
+                                    onClick={handleResetPassword}
                                     color="primary"
                                     disabled={isEmail ? false : true}
                                     sx={{
