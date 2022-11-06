@@ -92,7 +92,10 @@ export default function App() {
                         <Route path="/mon-annonce/:id" element={<MyOffer />} />
                         <Route path="/annonce/:id" element={<Offer />} />
                         <Route path="/deconnexion" element={<Logout />} />
-                        <Route path="/connexion" element={<Login />} />
+                        <Route
+                            path="/connexion"
+                            element={<Login {...{ theme }} />}
+                        />
                         <Route path="/inscription" element={<Signin />} />
                         <Route path="*" element={<PageNotFound />} />
                     </Route>
