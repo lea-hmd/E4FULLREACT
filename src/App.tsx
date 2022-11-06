@@ -77,14 +77,12 @@ export default function App() {
                         <Route
                             index
                             element={
-                                <Homepage
-                                    {...{ theme, handleCategoryClicked }}
-                                />
+                                <Homepage {...{ handleCategoryClicked }} />
                             }
                         />
                         <Route
                             path="/annonces"
-                            element={<Offers {...{ theme, hpCategory }} />}
+                            element={<Offers {...{ hpCategory }} />}
                         />
                         <Route path="/mon-profil" element={<MyProfile />} />
                         <Route path="/profil/:id" element={<PublicProfile />} />
@@ -93,11 +91,11 @@ export default function App() {
                         <Route path="/annonce/:id" element={<Offer />} />
                         <Route
                             path="/reinitialiser-mot-de-passe"
-                            element={<ResetPassword {...{ theme }} />}
+                            element={<ResetPassword />}
                         />
                         <Route
                             path="/connexion"
-                            element={<Login {...{ theme, setLoggedIn }} />}
+                            element={<Login {...{ setLoggedIn }} />}
                         />
                         <Route path="/inscription" element={<Signin />} />
                         <Route path="*" element={<PageNotFound />} />

@@ -2,14 +2,14 @@ import React from 'react'
 import CustomContainer from '../components/common/custom/CustomContainer'
 import { SectionTitle } from '../components/common/custom/CustomTitles'
 import LoginForm from '../components/login/LoginForm'
-import { Theme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 type LoginProps = {
-    theme: Theme
     setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Login({ theme, setLoggedIn }: LoginProps) {
+export default function Login({ setLoggedIn }: LoginProps) {
+    const theme = useTheme()
     return (
         <>
             <CustomContainer>

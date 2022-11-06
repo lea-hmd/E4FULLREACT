@@ -1,5 +1,5 @@
 import React from 'react'
-import { Theme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import OffersFilter from '../components/offers/OffersFilter'
 import CustomContainer from '../components/common/custom/CustomContainer'
@@ -9,13 +9,13 @@ import { RequestType } from '../shared/types/RequestType'
 import request from '../api/Request'
 
 type OffersProps = {
-    theme: Theme
     hpCategory: string
 }
-export default function Offers({ theme, hpCategory }: OffersProps) {
+export default function Offers({ hpCategory }: OffersProps) {
     const [searchValue, setSearchValue] = React.useState('')
     const [filteredOffers, setFilteredOffers] = React.useState([])
     const [categoryHp, setCategoryHp] = React.useState(hpCategory)
+    const theme = useTheme()
 
     const handleSearchValueChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
