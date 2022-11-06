@@ -32,6 +32,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
     const [password, setPassword] = React.useState('')
     const [showPassword, setShowPassword] = React.useState(false)
     const [isEmail, setIsEmail] = React.useState(false)
+    const [isError, setIsError] = React.useState(false)
 
     function isValidEmail(email: string) {
         return /\S+@\S+\.\S+/.test(email)
@@ -63,7 +64,14 @@ export default function LoginForm({ theme }: LoginFormProps) {
     async function login() {
         try {
             await request(requestParams)
-                .then((response) => response.json())
+                .then((response) => {
+                    if (response.status >= 400 && response.status < 600) {
+                        throw (
+                            (new Error('Bad response from server'),
+                            setIsError(true))
+                        )
+                    } else return response.json()
+                })
                 .then((data) => {
                     if (data.token) {
                         localStorage.setItem('Token', data.token.token)
@@ -72,7 +80,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
                 })
         } catch (error: any) {
             // eslint-disable-next-line no-console
-            console.log(error)
+            console.error(error)
         }
     }
 
@@ -110,9 +118,7 @@ export default function LoginForm({ theme }: LoginFormProps) {
                                 variant="outlined"
                                 onChange={handleChange}
                             />
-                            {isEmail ? (
-                                ''
-                            ) : (
+                            {!isEmail && (
                                 <FormHelperText error>
                                     Veuillez saisir un e-mail valide
                                 </FormHelperText>
@@ -155,6 +161,11 @@ export default function LoginForm({ theme }: LoginFormProps) {
                                         </InputAdornment>
                                     }
                                 />
+                                {isError && (
+                                    <FormHelperText error>
+                                        Veuillez vérifier vos identifiants
+                                    </FormHelperText>
+                                )}
                             </FormControl>
                         </Grid>
                     </Grid>
