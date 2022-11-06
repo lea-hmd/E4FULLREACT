@@ -17,7 +17,6 @@ import PublicProfile from './pages/PublicProfile'
 import MyOffers from './pages/MyOffers'
 import MyOffer from './pages/MyOffer'
 import Offer from './pages/Offer'
-import Logout from './pages/Logout'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
 import PageNotFound from './pages/PageNotFound'
@@ -91,7 +90,6 @@ export default function App() {
                         <Route path="/mes-annonces" element={<MyOffers />} />
                         <Route path="/mon-annonce/:id" element={<MyOffer />} />
                         <Route path="/annonce/:id" element={<Offer />} />
-                        <Route path="/deconnexion" element={<Logout />} />
                         <Route
                             path="/connexion"
                             element={<Login {...{ theme, setLoggedIn }} />}

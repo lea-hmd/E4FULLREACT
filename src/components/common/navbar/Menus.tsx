@@ -10,6 +10,7 @@ import {
 } from '@mui/material'
 
 import { Page } from '../../../shared/types/Page'
+import LogoutDialog from './LogoutDialog'
 
 type MenuProps = {
     theme: Theme
@@ -20,6 +21,9 @@ type MenuProps = {
     anchorEl: HTMLElement | null
     handleCloseUserMenu: () => void
     anchorElUser: HTMLElement | null
+    handleOpenLogoutDialog: () => void
+    openLogoutDialog: boolean
+    handleCloseLogoutDialog: () => void
 }
 
 export default function Menus({
@@ -31,6 +35,9 @@ export default function Menus({
     mobileFormat,
     handleCloseMenu,
     handleCloseUserMenu,
+    openLogoutDialog,
+    handleOpenLogoutDialog,
+    handleCloseLogoutDialog,
 }: MenuProps) {
     return (
         <>
@@ -111,6 +118,9 @@ export default function Menus({
                             key={page.id}
                             component={Link}
                             to={page.link}
+                            onClick={
+                                page.logout ? handleOpenLogoutDialog : undefined
+                            }
                             //TODO: Léa - Add onClick props with logout function only if setting title = Se déconnecter
                         >
                             <ListItemIcon>{page.icon}</ListItemIcon>
@@ -122,6 +132,13 @@ export default function Menus({
                         </MenuItem>
                     ))}
             </Menu>
+            <LogoutDialog
+                {...{
+                    theme,
+                    openLogoutDialog,
+                    handleCloseLogoutDialog,
+                }}
+            />
         </>
     )
 }
