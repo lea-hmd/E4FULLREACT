@@ -187,6 +187,10 @@ export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
                                 onClick={login}
                                 color="primary"
                                 disabled={isEmail ? false : true}
+                                sx={{
+                                    textAlign: 'center',
+                                    fontWeight: 'bold',
+                                }}
                             >
                                 Se connecter
                             </Button>

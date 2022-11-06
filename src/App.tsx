@@ -15,6 +15,7 @@ import Offers from './pages/Offers'
 import MyProfile from './pages/MyProfile'
 import PublicProfile from './pages/PublicProfile'
 import MyOffers from './pages/MyOffers'
+import ResetPassword from './pages/ResetPassword'
 import MyOffer from './pages/MyOffer'
 import Offer from './pages/Offer'
 import Login from './pages/Login'
@@ -90,6 +91,10 @@ export default function App() {
                         <Route path="/mes-annonces" element={<MyOffers />} />
                         <Route path="/mon-annonce/:id" element={<MyOffer />} />
                         <Route path="/annonce/:id" element={<Offer />} />
+                        <Route
+                            path="/reinitialiser-mot-de-passe"
+                            element={<ResetPassword {...{ theme }} />}
+                        />
                         <Route
                             path="/connexion"
                             element={<Login {...{ theme, setLoggedIn }} />}
