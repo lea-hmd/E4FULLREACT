@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
     ListItemIcon,
     ListItemText,
@@ -39,6 +39,7 @@ export default function Menus({
     handleOpenLogoutDialog,
     handleCloseLogoutDialog,
 }: MenuProps) {
+    const location = useLocation()
     return (
         <>
             {mobileFormat && (
@@ -70,7 +71,7 @@ export default function Menus({
                             <MenuItem
                                 key={page.id}
                                 component={Link}
-                                to={page.link}
+                                to={page.link ?? '/'}
                             >
                                 <ListItemIcon>{page.icon}</ListItemIcon>
                                 <ListItemText>
@@ -117,7 +118,11 @@ export default function Menus({
                         <MenuItem
                             key={page.id}
                             component={Link}
-                            to={page.link}
+                            to={
+                                page.logout
+                                    ? location.pathname
+                                    : page.link ?? '/'
+                            }
                             onClick={
                                 page.logout ? handleOpenLogoutDialog : undefined
                             }

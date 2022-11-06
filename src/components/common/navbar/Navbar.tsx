@@ -144,7 +144,7 @@ export default function Navbar({
                                     <Button
                                         component={Link}
                                         key={page.id}
-                                        to={page.link}
+                                        to={page.link ?? '/'}
                                         sx={{
                                             my: 2,
                                             color: theme.palette.primary.main,
