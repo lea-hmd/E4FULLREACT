@@ -35,7 +35,9 @@ export default function Banderole({ offers }: BanderoleProps) {
                         variant="h4"
                         fontWeight="bold"
                         textAlign="center"
-                        sx={{ color: '#FFF' }}
+                        sx={{
+                            color: '#FFF',
+                        }}
                     >
                         Trouvez votre bonheur sur MonAnnonce parmi les{' '}
                         {offers.length ?? 0 + ' '} annonces en ligne !

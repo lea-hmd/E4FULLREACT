@@ -43,7 +43,7 @@ export default function Homepage({
 
     return (
         <>
-            {/* TODO: Léa - Redirection on category click and on carousel offer click */}
+            {/* TODO: Léa - Redirection on carousel offer click */}
             <Banderole {...{ offers }} />
             <CategoriesFilter {...{ theme, handleCategoryClicked }} />
             <OffersCarousel {...{ theme, offers }} />
