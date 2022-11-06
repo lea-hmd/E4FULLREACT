@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import {
     CssBaseline,
     GlobalStyles,
@@ -42,6 +42,14 @@ export default function App() {
         setDarkMode(prefersDarkMode)
     }, [prefersDarkMode])
 
+    const navigate = useNavigate()
+    const [hpCategory, setHpCategory] = React.useState('')
+
+    const handleCategoryClicked = (machine_name: string) => {
+        setHpCategory(machine_name)
+        navigate('/annonces')
+    }
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -54,47 +62,40 @@ export default function App() {
                 }}
             />
 
-            <Router>
-                <Layout
-                    {...{
-                        theme,
-                        loggedIn,
-                        darkMode,
-                        handleChangeMode,
-                    }}
-                >
-                    <Routes>
-                        {/* TODO: Léa - Change links and components props with the right params */}
-                        <Route path="/">
-                            <Route
-                                index
-                                element={<Homepage {...{ theme }} />}
-                            />
-                            <Route
-                                path="/annonces"
-                                element={<Offers {...{ theme }} />}
-                            />
-                            <Route path="/mon-profil" element={<MyProfile />} />
-                            <Route
-                                path="/profil/:id"
-                                element={<PublicProfile />}
-                            />
-                            <Route
-                                path="/mes-annonces"
-                                element={<MyOffers />}
-                            />
-                            <Route
-                                path="/mon-annonce/:id"
-                                element={<MyOffer />}
-                            />
-                            <Route path="/annonce/:id" element={<Offer />} />
-                            <Route path="/deconnexion" element={<Logout />} />
-                            <Route path="/connexion" element={<Login />} />
-                            <Route path="/inscription" element={<Signin />} />
-                        </Route>
-                    </Routes>
-                </Layout>
-            </Router>
+            <Layout
+                {...{
+                    theme,
+                    loggedIn,
+                    darkMode,
+                    handleChangeMode,
+                }}
+            >
+                <Routes>
+                    {/* TODO: Léa - Change links and components props with the right params */}
+                    <Route path="/">
+                        <Route
+                            index
+                            element={
+                                <Homepage
+                                    {...{ theme, handleCategoryClicked }}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/annonces"
+                            element={<Offers {...{ theme, hpCategory }} />}
+                        />
+                        <Route path="/mon-profil" element={<MyProfile />} />
+                        <Route path="/profil/:id" element={<PublicProfile />} />
+                        <Route path="/mes-annonces" element={<MyOffers />} />
+                        <Route path="/mon-annonce/:id" element={<MyOffer />} />
+                        <Route path="/annonce/:id" element={<Offer />} />
+                        <Route path="/deconnexion" element={<Logout />} />
+                        <Route path="/connexion" element={<Login />} />
+                        <Route path="/inscription" element={<Signin />} />
+                    </Route>
+                </Routes>
+            </Layout>
         </ThemeProvider>
     )
 }
