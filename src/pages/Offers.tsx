@@ -15,13 +15,14 @@ type OffersProps = {
 export default function Offers({ theme, hpCategory }: OffersProps) {
     const [searchValue, setSearchValue] = React.useState('')
     const [filteredOffers, setFilteredOffers] = React.useState([])
+    const [categoryHp, setCategoryHp] = React.useState(hpCategory)
 
     const handleSearchValueChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
     }
 
     const requestParams: RequestType = {
-        endpoint: '/search?key=' + searchValue + '&category=' + hpCategory,
+        endpoint: '/search?key=' + searchValue + '&category=' + categoryHp,
         method: 'GET',
     }
 
@@ -38,6 +39,7 @@ export default function Offers({ theme, hpCategory }: OffersProps) {
 
     React.useEffect(() => {
         getFilteredOffers()
+        setCategoryHp('')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchValue])
 
