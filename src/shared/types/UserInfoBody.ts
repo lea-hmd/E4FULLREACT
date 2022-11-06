@@ -1,14 +1,14 @@
 // Use this body type for 'POST: /registration' and 'PUT: /user/:id' routes
 export type UserInfoBody = {
-    email: string
-    password: string
-    firstname: string
-    lastname: string
-    phone: number
-    address: string
-    zip_code: number
-    city: string
-    country: string
-    identifical_file: any
-    profile_picture: any
+    email: string | null
+    password: string | null
+    firstname: string | null
+    lastname: string | null
+    phone: string | null
+    address: string | null
+    zip_code: string | null
+    city: string | null
+    country: string | null
+    identifical_file: FileList | null
+    profile_picture: FileList | null
 }
