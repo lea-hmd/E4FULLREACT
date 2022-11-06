@@ -1,13 +1,12 @@
 import { Grid, TextField, Button } from '@mui/material'
 import React, { useState } from 'react'
-import { RequestType } from '../shared/types/RequestType'
 
 export default function Signin() {
     const style = {
         mt: '0.5rem',
         mb: '0.5rem',
     }
-    function updateProfil() {}
+    // function updateProfil() {}
     const [email, setEmail] = useState<string | null>('')
     const [password, setPassword] = useState<string | null>('')
     const [firstname, setFirstname] = useState<string | null>('')
@@ -17,8 +16,8 @@ export default function Signin() {
     const [zipCode, setZipCode] = useState<string | null>('')
     const [city, setCity] = useState<string | null>('')
     const [country, setCountry] = useState<string | null>('')
-    const [identificalFile, setIdentificalFile] = useState<File | null>(null)
-    const [profilePicture, setProfilePicture] = useState<File | null>(null)
+    // const [identificalFile, setIdentificalFile] = useState<File | null>(null)
+    // const [profilePicture, setProfilePicture] = useState<File | null>(null)
 
     return (
         <Grid
@@ -103,7 +102,7 @@ export default function Signin() {
                 onChange={(e) => setCountry(e.target.value)}
             />
 
-            <input
+            {/* <input
                 type="file"
                 onChange={(e) =>
                     e.target.files && setIdentificalFile(e.target.files[0])
@@ -119,11 +118,11 @@ export default function Signin() {
                     // eslint-disable-next-line no-console
                     console.log(profilePicture?.name)
                 }}
-            />
+            /> */}
 
             <Button
                 //Change style
-                onClick={() => updateProfil()}
+                // onClick={() => updateProfil()}
                 sx={{
                     backgroundColor: 'white',
                     width: '80%',
