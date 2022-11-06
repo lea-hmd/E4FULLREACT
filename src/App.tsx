@@ -20,6 +20,7 @@ import Offer from './pages/Offer'
 import Logout from './pages/Logout'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
+import PageNotFound from './pages/PageNotFound'
 
 export default function App() {
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -93,6 +94,7 @@ export default function App() {
                         <Route path="/deconnexion" element={<Logout />} />
                         <Route path="/connexion" element={<Login />} />
                         <Route path="/inscription" element={<Signin />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Route>
                 </Routes>
             </Layout>
