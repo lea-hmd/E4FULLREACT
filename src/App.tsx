@@ -90,7 +90,10 @@ export default function App() {
                         <Route path="/profil/:id" element={<PublicProfile />} />
                         <Route path="/mes-annonces" element={<MyOffers />} />
                         <Route path="/mon-annonce/:id" element={<MyOffer />} />
-                        <Route path="/annonce/:id" element={<Offer />} />
+                        <Route
+                            path="/annonce/:id"
+                            element={<Offer {...{ theme }} />}
+                        />
                         <Route path="/deconnexion" element={<Logout />} />
                         <Route path="/connexion" element={<Login />} />
                         <Route path="/inscription" element={<Signin />} />
