@@ -21,6 +21,7 @@ import Offer from './pages/Offer'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
 import PageNotFound from './pages/PageNotFound'
+import AuthenticatedError from './components/common/authenticatedError/AuthenticatedError'
 
 export default function App() {
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -84,10 +85,29 @@ export default function App() {
                             path="/annonces"
                             element={<Offers {...{ hpCategory }} />}
                         />
-                        <Route path="/mon-profil" element={<MyProfile />} />
+                        <Route
+                            path="/mon-profil"
+                            element={
+                                loggedIn ? (
+                                    <MyProfile />
+                                ) : (
+                                    <AuthenticatedError />
+                                )
+                            }
+                        />
                         <Route path="/profil/:id" element={<PublicProfile />} />
-                        <Route path="/mes-annonces" element={<MyOffers />} />
-                        <Route path="/mon-annonce/:id" element={<MyOffer />} />
+                        <Route
+                            path="/mes-annonces"
+                            element={
+                                loggedIn ? <MyOffers /> : <AuthenticatedError />
+                            }
+                        />
+                        <Route
+                            path="/mon-annonce/:id"
+                            element={
+                                loggedIn ? <MyOffer /> : <AuthenticatedError />
+                            }
+                        />
                         <Route path="/annonce/:id" element={<Offer />} />
                         <Route
                             path="/reinitialiser-mot-de-passe"
