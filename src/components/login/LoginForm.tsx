@@ -22,6 +22,7 @@ import { LoginBody } from '../../shared/types/LoginBody'
 import { RequestType } from '../../shared/types/RequestType'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { useLocalStorage } from '../../shared/hooks/useLocalStorage'
 
 type LoginFormProps = {
     theme: Theme
@@ -34,6 +35,7 @@ export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
     const [showPassword, setShowPassword] = React.useState(false)
     const [isEmail, setIsEmail] = React.useState(false)
     const [isError, setIsError] = React.useState(false)
+    const { setToken } = useLocalStorage()
 
     function isValidEmail(email: string) {
         return /\S+@\S+\.\S+/.test(email)
@@ -75,7 +77,7 @@ export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
                 })
                 .then((data) => {
                     if (data.token) {
-                        localStorage.setItem('Token', data.token.token)
+                        setToken(data.token.token)
                         navigate('/')
                         setLoggedIn(true)
                     }
