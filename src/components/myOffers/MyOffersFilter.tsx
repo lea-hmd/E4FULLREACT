@@ -156,7 +156,10 @@ export default function MyOffersFilter() {
                                             setPrice(parseInt(e.target.value))
                                         }
                                         startAdornment={
-                                            <InputAdornment position="start">
+                                            <InputAdornment
+                                                position="start"
+                                                component={'p'}
+                                            >
                                                 €
                                             </InputAdornment>
                                         }
