@@ -45,6 +45,10 @@ export default function MyOffersFilter() {
         }
     }
 
+    const handleRemoveImage = () => {
+        setImage(null)
+    }
+
     const body: OfferBody = {
         title,
         description,
@@ -235,18 +239,62 @@ export default function MyOffersFilter() {
                                     </Select>
                                 </FormControl>
                             </Grid>
-                            <Grid item xs={12}>
-                                {/* TODO: Léa - Input file avec bouton et preview */}
-
-                                <Button variant="contained" component="label">
-                                    Télécharger une photo
-                                    <input
-                                        hidden
-                                        accept="image/*"
-                                        type="file"
-                                        onChange={handleImageChange}
-                                    />
-                                </Button>
+                            <Grid
+                                item
+                                xs={12}
+                                container
+                                justifyContent="center"
+                                alignItems="center"
+                                m={1}
+                                p={2}
+                            >
+                                {!image && (
+                                    <Grid
+                                        item
+                                        md={6}
+                                        container
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                        <Button
+                                            variant="contained"
+                                            component="label"
+                                        >
+                                            Télécharger une photo
+                                            <input
+                                                hidden
+                                                accept="image/*"
+                                                type="file"
+                                                onChange={handleImageChange}
+                                            />
+                                        </Button>
+                                    </Grid>
+                                )}
+                                {image && (
+                                    <Grid
+                                        item
+                                        md={6}
+                                        container
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                        <img
+                                            src={URL.createObjectURL(image)}
+                                            width="80%"
+                                            alt="Aperçu du fichier téléchargé"
+                                        />
+                                        <Button
+                                            sx={{
+                                                m: 2,
+                                            }}
+                                            size="small"
+                                            variant="contained"
+                                            onClick={handleRemoveImage}
+                                        >
+                                            Supprimer l'image
+                                        </Button>
+                                    </Grid>
+                                )}
                             </Grid>
                         </Grid>
                     </DialogContentText>
