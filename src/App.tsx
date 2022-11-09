@@ -87,7 +87,10 @@ export default function App() {
                             element={<Offers {...{ theme, hpCategory }} />}
                         />
                         <Route path="/mon-profil" element={<MyProfile />} />
-                        <Route path="/profil/:id" element={<PublicProfile />} />
+                        <Route
+                            path="/profil/:id"
+                            element={<PublicProfile {...theme} />}
+                        />
                         <Route path="/mes-annonces" element={<MyOffers />} />
                         <Route path="/mon-annonce/:id" element={<MyOffer />} />
                         <Route path="/annonce/:id" element={<Offer />} />
