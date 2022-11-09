@@ -22,20 +22,19 @@ import { LoginBody } from '../../shared/types/LoginBody'
 import { RequestType } from '../../shared/types/RequestType'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-import { useLocalStorage } from '../../shared/hooks/useLocalStorage'
+import { useAuth } from '../../context/AuthContext'
 
 type LoginFormProps = {
     theme: Theme
-    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
+export default function LoginForm({ theme }: LoginFormProps) {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [showPassword, setShowPassword] = React.useState(false)
     const [isEmail, setIsEmail] = React.useState(false)
     const [isError, setIsError] = React.useState(false)
-    const { setToken } = useLocalStorage()
+    const { dispatch } = useAuth()
 
     function isValidEmail(email: string) {
         return /\S+@\S+\.\S+/.test(email)
@@ -77,9 +76,11 @@ export default function LoginForm({ theme, setLoggedIn }: LoginFormProps) {
                 })
                 .then((data) => {
                     if (data.token) {
-                        setToken(data.token.token)
+                        dispatch({
+                            type: 'LOGIN',
+                            payload: data.token.token,
+                        })
                         navigate('/')
-                        setLoggedIn(true)
                     }
                 })
         } catch (error: any) {

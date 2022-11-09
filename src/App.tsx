@@ -113,10 +113,7 @@ export default function App() {
                             path="/reinitialiser-mot-de-passe"
                             element={<ResetPassword />}
                         />
-                        <Route
-                            path="/connexion"
-                            element={<Login {...{ setLoggedIn }} />}
-                        />
+                        <Route path="/connexion" element={<Login />} />
                         <Route path="/inscription" element={<Signin />} />
                         <Route path="*" element={<PageNotFound />} />
                     </Route>
