@@ -69,6 +69,8 @@ export default function Navbar({
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
         null
     )
+    const [openLogoutDialog, setOpenLogoutDialog] = React.useState(false)
+
     const mobileFormat = useMediaQuery(theme.breakpoints.down('sm'))
     const pages = pagesConstants
 
@@ -83,6 +85,12 @@ export default function Navbar({
     }
     const handleCloseMenu = () => {
         setAnchorEl(null)
+    }
+    const handleOpenLogoutDialog = () => {
+        setOpenLogoutDialog(true)
+    }
+    const handleCloseLogoutDialog = () => {
+        setOpenLogoutDialog(false)
     }
 
     return (
@@ -136,7 +144,7 @@ export default function Navbar({
                                     <Button
                                         component={Link}
                                         key={page.id}
-                                        to={page.link}
+                                        to={page.link ?? '/'}
                                         sx={{
                                             my: 2,
                                             color: theme.palette.primary.main,
@@ -197,7 +205,10 @@ export default function Navbar({
                             anchorElUser,
                             mobileFormat,
                             handleCloseMenu,
+                            openLogoutDialog,
                             handleCloseUserMenu,
+                            handleOpenLogoutDialog,
+                            handleCloseLogoutDialog,
                         }}
                     />
                 </Toolbar>

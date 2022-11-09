@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
     ListItemIcon,
     ListItemText,
@@ -10,6 +10,7 @@ import {
 } from '@mui/material'
 
 import { Page } from '../../../shared/types/Page'
+import LogoutDialog from './LogoutDialog'
 
 type MenuProps = {
     theme: Theme
@@ -20,6 +21,9 @@ type MenuProps = {
     anchorEl: HTMLElement | null
     handleCloseUserMenu: () => void
     anchorElUser: HTMLElement | null
+    handleOpenLogoutDialog: () => void
+    openLogoutDialog: boolean
+    handleCloseLogoutDialog: () => void
 }
 
 export default function Menus({
@@ -31,7 +35,11 @@ export default function Menus({
     mobileFormat,
     handleCloseMenu,
     handleCloseUserMenu,
+    openLogoutDialog,
+    handleOpenLogoutDialog,
+    handleCloseLogoutDialog,
 }: MenuProps) {
+    const location = useLocation()
     return (
         <>
             {mobileFormat && (
@@ -63,7 +71,7 @@ export default function Menus({
                             <MenuItem
                                 key={page.id}
                                 component={Link}
-                                to={page.link}
+                                to={page.link ?? '/'}
                             >
                                 <ListItemIcon>{page.icon}</ListItemIcon>
                                 <ListItemText>
@@ -110,7 +118,14 @@ export default function Menus({
                         <MenuItem
                             key={page.id}
                             component={Link}
-                            to={page.link}
+                            to={
+                                page.logout
+                                    ? location.pathname
+                                    : page.link ?? '/'
+                            }
+                            onClick={
+                                page.logout ? handleOpenLogoutDialog : undefined
+                            }
                             //TODO: Léa - Add onClick props with logout function only if setting title = Se déconnecter
                         >
                             <ListItemIcon>{page.icon}</ListItemIcon>
@@ -122,6 +137,13 @@ export default function Menus({
                         </MenuItem>
                     ))}
             </Menu>
+            <LogoutDialog
+                {...{
+                    theme,
+                    openLogoutDialog,
+                    handleCloseLogoutDialog,
+                }}
+            />
         </>
     )
 }
