@@ -26,7 +26,7 @@ export default function MyOffersFilter() {
     const [title, setTitle] = React.useState('')
     const [description, setDescription] = React.useState('')
     const [price, setPrice] = React.useState(0)
-    const [status, setStatus] = React.useState(0)
+    const [status, setStatus] = React.useState(1)
     const [category, setCategory] = React.useState('')
     const [image, setImage] = React.useState<File | null>(null)
     const [categories, setCategories] = React.useState([])
@@ -39,7 +39,7 @@ export default function MyOffersFilter() {
         setOpen(false)
     }
 
-    const handleImageChange = (event: React.BaseSyntheticEvent) => {
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             setImage(event.target.files[0])
         }
@@ -58,9 +58,9 @@ export default function MyOffersFilter() {
         endpoint: '/admin_offer',
         method: 'POST',
         body,
-        //    customHeaders: {
-        //        Authorization: `Bearer ${token}`,
-        //    },
+        customHeaders: {
+            Authorization: 'Bearer ',
+        },
     }
 
     const categoriesParams: RequestType = {
@@ -85,7 +85,9 @@ export default function MyOffersFilter() {
     }, [])
 
     const handleOfferCreationSubmit = async () => {
-        const response = await request(requestParams)
+        // eslint-disable-next-line no-console
+        console.log(body)
+        const response = await request(requestParams).then(handleClose)
         // eslint-disable-next-line no-console
         console.log(response)
     }
@@ -167,13 +169,20 @@ export default function MyOffersFilter() {
                                     <InputLabel id="category" required>
                                         Catégorie
                                     </InputLabel>
-
-                                    {/* TODO: Léa - Change color of dropdown */}
                                     <Select
                                         labelId="category"
                                         required
                                         value={category}
                                         label="Catégorie"
+                                        MenuProps={{
+                                            PaperProps: {
+                                                style: {
+                                                    backgroundColor:
+                                                        theme.palette.secondary
+                                                            .dark,
+                                                },
+                                            },
+                                        }}
                                         onChange={(e) =>
                                             setCategory(e.target.value)
                                         }
@@ -195,17 +204,33 @@ export default function MyOffersFilter() {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
-                                {/* Composant select */}
-                                <TextField
-                                    required
-                                    fullWidth
-                                    value={status}
-                                    onChange={(e) =>
-                                        setStatus(Number(e.target.value))
-                                    }
-                                    label="Statut"
-                                    variant="outlined"
-                                />
+                                <FormControl fullWidth required>
+                                    <InputLabel id="status" required>
+                                        Statut
+                                    </InputLabel>
+                                    <Select
+                                        labelId="status"
+                                        required
+                                        value={status}
+                                        label="Statut"
+                                        MenuProps={{
+                                            PaperProps: {
+                                                style: {
+                                                    backgroundColor:
+                                                        theme.palette.secondary
+                                                            .dark,
+                                                },
+                                            },
+                                        }}
+                                        onChange={(e) =>
+                                            setStatus(Number(e.target.value))
+                                        }
+                                    >
+                                        <MenuItem value={1}>Brouillon</MenuItem>
+                                        <MenuItem value={2}>Publié</MenuItem>
+                                        <MenuItem value={3}>Supprimé</MenuItem>
+                                    </Select>
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12}>
                                 {/* TODO: Léa - Input file avec bouton et preview */}
