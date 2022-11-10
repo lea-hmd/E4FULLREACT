@@ -72,7 +72,7 @@ export default function OffersFilter({
                     checked: false,
                 }))
             )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getCheckboxes])
 
     return (
