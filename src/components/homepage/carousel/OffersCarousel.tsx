@@ -65,7 +65,13 @@ export default function OffersCarousel({ theme, offers }: OffersCarouselProps) {
                 {offers
                     .map(
                         (
-                            { title, price, product_picture, category }: any,
+                            {
+                                id,
+                                title,
+                                price,
+                                product_picture,
+                                category,
+                            }: any,
                             index: React.Key
                         ) => (
                             <Grid
@@ -76,6 +82,7 @@ export default function OffersCarousel({ theme, offers }: OffersCarouselProps) {
                             >
                                 <CarouselOfferCard
                                     {...{
+                                        id,
                                         theme,
                                         title,
                                         price,

@@ -16,6 +16,7 @@ import { categoryIcon } from '../../common/utils/utils'
 import noImage from '../../../assets/images/noImage.jpg'
 
 type CarouselOfferCardProps = {
+    id: number
     theme: Theme
     title: string
     price: number
@@ -24,6 +25,7 @@ type CarouselOfferCardProps = {
 }
 
 export default function CarouselOfferCard({
+    id,
     theme,
     title,
     price,
@@ -32,7 +34,7 @@ export default function CarouselOfferCard({
 }: CarouselOfferCardProps) {
     const iconSize = 'small'
     return (
-        <MuiLink component={Link} to="/" underline="none">
+        <MuiLink component={Link} to={'/annonce/' + id} underline="none">
             {/* TODO: Léa - Fix redirection */}
             <Card
                 sx={{
@@ -84,7 +86,7 @@ export default function CarouselOfferCard({
                             </Typography>
                         </Grid>
                         <Grid item xs={4} container justifyContent="flex-end">
-                            <IconButton>
+                            <IconButton component={Link} to={'/annonce/' + id}>
                                 <Info color="primary" />
                             </IconButton>
                         </Grid>
