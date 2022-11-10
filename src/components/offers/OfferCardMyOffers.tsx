@@ -6,14 +6,16 @@ import {
     Chip,
     Typography,
     CardActions,
-    Button,
     Theme,
     Link as MuiLink,
     Grid,
+    IconButton,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-
+import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
+import InfoIcon from '@mui/icons-material/Info'
 import noImage from '../../assets/images/noImage.jpg'
 import { categoryIcon, categoryName } from '../common/utils/utils'
 
@@ -105,31 +107,19 @@ export default function OfferCard({
                                 {moment(created_at).format('DD/MM/YYYY')}
                             </Typography>
                         </Grid>
-                        <Grid item xs={6} container justifyContent="flex-end">
-                            <Button
-                                variant="contained"
-                                size="small"
-                                color="primary"
-                            >
+                        <Grid xs={6} container justifyContent="flex-end">
+                            <IconButton>
                                 {/* TODO: Léa - Add Link component to button */}
-                                Détails
-                            </Button>
-                            <Button
-                                variant="contained"
-                                size="small"
-                                color="primary"
-                            >
+                                <InfoIcon />
+                            </IconButton>
+                            <IconButton>
+                                <EditIcon />
                                 {/* TODO: Léa - Add Link component to button */}
-                                Supprimer
-                            </Button>
-                            <Button
-                                variant="contained"
-                                size="small"
-                                color="primary"
-                            >
+                            </IconButton>
+                            <IconButton>
                                 {/* TODO: Léa - Add Link component to button */}
-                                Modifier
-                            </Button>
+                                <DeleteIcon />
+                            </IconButton>
                         </Grid>
                     </Grid>
                 </CardActions>

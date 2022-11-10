@@ -22,6 +22,7 @@ export default function MyOffers() {
             await request(requestParams)
                 .then((response) => response.json())
                 .then((data) => {
+                    // eslint-disable-next-line no-console
                     console.log(data)
                     setMyOffers(data)
                 })
