@@ -1,5 +1,5 @@
 import React from 'react'
-import { Theme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import OffersFilter from '../components/offers/OffersFilter'
 import CustomContainer from '../components/common/custom/CustomContainer'
@@ -9,24 +9,69 @@ import { RequestType } from '../shared/types/RequestType'
 import request from '../api/Request'
 
 type OffersProps = {
-    theme: Theme
     hpCategory: string
 }
-export default function Offers({ theme, hpCategory }: OffersProps) {
+
+type CheckedItem = {
+    category: string
+    checked: boolean
+}
+export default function Offers({ hpCategory }: OffersProps) {
     const [searchValue, setSearchValue] = React.useState('')
     const [filteredOffers, setFilteredOffers] = React.useState([])
     const [categoryHp, setCategoryHp] = React.useState(hpCategory)
+    const [selectedCategories, setSelectedCategories] = React.useState<
+        CheckedItem[]
+    >([])
+    const [getOffers, setGetOffers] = React.useState(true)
+
+    const theme = useTheme()
 
     const handleSearchValueChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
+        setGetOffers(true)
     }
 
-    const requestParams: RequestType = {
-        endpoint: '/search?key=' + searchValue + '&category=' + categoryHp,
-        method: 'GET',
+    const handleCategoryChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        let checkedCategoriesList = [...selectedCategories]
+        if (event.target.checked) {
+            checkedCategoriesList = [
+                ...selectedCategories,
+                {
+                    category: event.target.value,
+                    checked: event.target.checked,
+                },
+            ]
+        } else {
+            checkedCategoriesList.splice(
+                selectedCategories.indexOf(
+                    selectedCategories.find(
+                        (item) => item.category === event.target.value
+                    ) as CheckedItem
+                ),
+                1
+            )
+        }
+        setSelectedCategories(checkedCategoriesList)
+        getFilteredOffers(checkedCategoriesList)
     }
 
-    async function getFilteredOffers() {
+    async function getFilteredOffers(checkboxState?: CheckedItem[]) {
+        const categoriesQuery = (
+            checkboxState ? checkboxState : selectedCategories
+        ).map(({ category }) => '&category=' + category)
+
+        const requestParams: RequestType = {
+            endpoint:
+                '/search?key=' +
+                searchValue +
+                '&category=' +
+                categoryHp +
+                categoriesQuery,
+            method: 'GET',
+        }
         try {
             await request(requestParams)
                 .then((response) => response.json())
@@ -38,17 +83,23 @@ export default function Offers({ theme, hpCategory }: OffersProps) {
     }
 
     React.useEffect(() => {
-        getFilteredOffers()
-        setCategoryHp('')
+        if (getOffers) {
+            getFilteredOffers()
+            setGetOffers(false)
+            setCategoryHp('')
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchValue])
+    }, [searchValue, getOffers])
 
     return (
         <CustomContainer>
-            {/* TODO: Léa - Change style later */}
-            {/* TODO: Léa - Check the right category checkboxe when homepage category redirection */}
             <OffersFilter
-                {...{ theme, searchValue, handleSearchValueChange }}
+                {...{
+                    theme,
+                    searchValue,
+                    handleSearchValueChange,
+                    handleCategoryChange,
+                }}
             />
             <FilteredOffers {...{ theme, filteredOffers }} />
         </CustomContainer>

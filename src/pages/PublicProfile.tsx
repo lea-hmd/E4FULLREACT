@@ -5,10 +5,11 @@ import request from '../api/Request'
 import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import { PublicProfileType } from '../shared/types/PublicProfileType'
 import { RequestType } from '../shared/types/RequestType'
-import { Theme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
-export default function PublicProfile(theme: Theme) {
+export default function PublicProfile() {
     const { id } = useParams()
+    const theme = useTheme()
     const [publicProfile, setPublicProfile] = useState<PublicProfileType>()
     const requestParams: RequestType = {
         endpoint: '/profile/' + id,
