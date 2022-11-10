@@ -20,7 +20,7 @@ import { RequestType } from '../../shared/types/RequestType'
 import request from '../../api/Request'
 import { useAuth } from '../../context/AuthContext'
 
-export default function MyOffersFilter() {
+export default function MyOfferForm() {
     const { state } = useAuth()
     const token = state.token
 
@@ -52,17 +52,6 @@ export default function MyOffersFilter() {
         setImage(null)
     }
 
-    const body = new FormData()
-
-    const requestParams: RequestType = {
-        endpoint: '/admin_offer',
-        method: 'POST',
-        body,
-        customHeaders: {
-            Authorization: `Bearer ${token}`,
-        },
-    }
-
     const categoriesParams: RequestType = {
         endpoint: '/offers-categories',
         method: 'GET',
@@ -85,19 +74,26 @@ export default function MyOffersFilter() {
     }, [])
 
     const handleOfferCreationSubmit = async () => {
+        const body = new FormData()
+
         body.append('title', title)
         body.append('description', description)
         body.append('price', price.toString())
         body.append('status', status.toString())
         body.append('category', category)
         if (image) {
-            body.append('image', image)
+            body.append('productPicture', image)
         }
-        // eslint-disable-next-line no-console
-        console.log(body)
-        const response = await request(requestParams).then(handleClose)
-        // eslint-disable-next-line no-console
-        console.log('response : ' + response)
+
+        const requestParams: RequestType = {
+            endpoint: '/admin_offer',
+            method: 'POST',
+            body,
+            customHeaders: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+        await request(requestParams).then(handleClose)
     }
 
     return (
