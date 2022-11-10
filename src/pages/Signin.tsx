@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Grid, TextField, Typography } from '@mui/material'
 import { RequestType } from '../shared/types/RequestType'
 import request from '../api/Request'
+import { Link } from 'react-router-dom'
 
 export default function Signin() {
     const style = {
@@ -41,31 +42,6 @@ export default function Signin() {
         setProfilePicture(null)
     }
 
-    // async function register() {
-    //     const requestParams: RequestType = {
-    //         endpoint: '/registration',
-    //         method: 'POST',
-    //         body: {
-    //             email,
-    //             password,
-    //             firstname,
-    //             lastname,
-    //             phone,
-    //             address,
-    //             zip_code: zipCode,
-    //             city,
-    //             country,
-    //             identifical_file: identificalFile,
-    //             profile_picture: profilePicture,
-    //         },
-    //     }
-    //     try {
-    //         await request(requestParams).then((response) => response.json())
-    //     } catch (error: any) {
-    //         // eslint-disable-next-line no-console
-    //         console.log(error)
-    //     }
-    // }
     const handleSigninSubmit = async () => {
         const body = new FormData()
 
@@ -290,6 +266,8 @@ export default function Signin() {
             <Button
                 //Change style
                 variant="contained"
+                component={Link}
+                to={'/'}
                 onClick={() => handleSigninSubmit()}
                 sx={{
                     margin: '3rem auto',
