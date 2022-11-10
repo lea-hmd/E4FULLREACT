@@ -6,6 +6,7 @@ import {
     DialogTitle,
     Theme,
 } from '@mui/material'
+import { useAuth } from '../../../context/AuthContext'
 
 type LogoutDialogProps = {
     theme: Theme
@@ -18,6 +19,13 @@ export default function LogoutDialog({
     openLogoutDialog,
     handleCloseLogoutDialog,
 }: LogoutDialogProps) {
+    const { dispatch } = useAuth()
+
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' })
+        handleCloseLogoutDialog()
+    }
+
     return (
         <>
             <Dialog
@@ -36,8 +44,7 @@ export default function LogoutDialog({
                 <DialogActions>
                     <Button onClick={handleCloseLogoutDialog}>Retour</Button>
                     <Button
-                        onClick={handleCloseLogoutDialog}
-                        //TODO: Léa - Clear token context and navigate to /
+                        onClick={handleLogout}
                         autoFocus
                         variant="contained"
                         size="small"

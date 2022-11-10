@@ -11,7 +11,7 @@ type InitialStateType = {
 
 type ContextType = {
     state: InitialStateType
-    dispatch: React.Dispatch<{ type: string; payload: any }>
+    dispatch: React.Dispatch<{ type: string; payload?: any }>
 }
 const initialState = {
     token: '',
