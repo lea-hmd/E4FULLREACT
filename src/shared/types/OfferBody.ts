@@ -3,7 +3,7 @@ export type OfferBody = {
     title: string
     description: string
     price: number
-    machine_name: string
+    category: string
     status_id: number
     productPicture: any
 }

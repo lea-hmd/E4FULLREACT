@@ -16,12 +16,14 @@ import {
     Select,
     MenuItem,
 } from '@mui/material'
-import { OfferBody } from '../../shared/types/OfferBody'
 import { RequestType } from '../../shared/types/RequestType'
 import RequestMethod from '../../api/RequestMethod'
 import { useAuth } from '../../context/AuthContext'
 
-export default function MyOffersFilter() {
+export default function MyOfferForm() {
+    const { state } = useAuth()
+    const token = state.token
+
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
     const [title, setTitle] = React.useState('')
@@ -31,8 +33,6 @@ export default function MyOffersFilter() {
     const [category, setCategory] = React.useState('')
     const [image, setImage] = React.useState<File | null>(null)
     const [categories, setCategories] = React.useState([])
-    const { state } = useAuth()
-    const token = state.token
 
     const handleClickOpen = () => {
         setOpen(true)
@@ -50,22 +50,6 @@ export default function MyOffersFilter() {
 
     const handleRemoveImage = () => {
         setImage(null)
-    }
-
-    const body: OfferBody = {
-        title,
-        description,
-        price,
-        status_id: status,
-        machine_name: category,
-        productPicture: image,
-    }
-
-    const requestParams: RequestType = {
-        endpoint: '/admin_offer',
-        method: 'POST',
-        body,
-        token,
     }
 
     const categoriesParams: RequestType = {
@@ -90,11 +74,28 @@ export default function MyOffersFilter() {
     }, [])
 
     const handleOfferCreationSubmit = async () => {
-        // eslint-disable-next-line no-console
-        console.log(body)
-        const response = await RequestMethod(requestParams).then(handleClose)
-        // eslint-disable-next-line no-console
-        console.log(response)
+        const body = new FormData()
+
+        body.append('title', title)
+        body.append('description', description)
+        body.append('price', price.toString())
+        body.append('status', status.toString())
+        body.append('category', category)
+        if (image) {
+            body.append('productPicture', image)
+        }
+
+        const requestParams: RequestType = {
+            endpoint: '/admin_offer',
+            method: 'POST',
+            body,
+            token,
+            formData: true,
+        }
+        await RequestMethod(requestParams).then(() => {
+            window.location.reload()
+            handleClose()
+        })
     }
 
     return (
@@ -158,13 +159,10 @@ export default function MyOffersFilter() {
                                         type="number"
                                         value={price}
                                         onChange={(e) =>
-                                            setPrice(parseInt(e.target.value))
+                                            setPrice(Number(e.target.value))
                                         }
                                         startAdornment={
-                                            <InputAdornment
-                                                position="start"
-                                                component={'p'}
-                                            >
+                                            <InputAdornment position="start">
                                                 €
                                             </InputAdornment>
                                         }
@@ -303,7 +301,7 @@ export default function MyOffersFilter() {
                 <DialogActions>
                     {/* TODO: Léa - reset input content when clicked */}
                     <Button onClick={handleClose}>Retour</Button>
-                    {/* TODO: Léa - Send data to RequestMethod only if all inputs are specified (disabled button) */}
+                    {/* TODO: Léa - Send data to Request only if all inputs are specified (disabled button) */}
                     <Button
                         variant="contained"
                         onClick={handleOfferCreationSubmit}
