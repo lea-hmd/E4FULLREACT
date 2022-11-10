@@ -9,13 +9,13 @@ export default function request({
     //Mettre l'url de son back
     const url = 'http://localhost:8082' + endpoint
     const headers = new Headers({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         ...customHeaders,
     })
     const init = {
         method,
         headers,
-        body: JSON.stringify(body),
+        body,
     }
 
     return fetch(url, init)

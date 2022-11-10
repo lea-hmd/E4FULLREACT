@@ -16,7 +16,6 @@ import {
     Select,
     MenuItem,
 } from '@mui/material'
-import { OfferBody } from '../../shared/types/OfferBody'
 import { RequestType } from '../../shared/types/RequestType'
 import request from '../../api/Request'
 
@@ -49,14 +48,7 @@ export default function MyOffersFilter() {
         setImage(null)
     }
 
-    const body: OfferBody = {
-        title,
-        description,
-        price,
-        status_id: status,
-        machine_name: category,
-        productPicture: image,
-    }
+    const body = new FormData()
 
     const requestParams: RequestType = {
         endpoint: '/admin_offer',
@@ -89,11 +81,19 @@ export default function MyOffersFilter() {
     }, [])
 
     const handleOfferCreationSubmit = async () => {
+        body.append('title', title)
+        body.append('description', description)
+        body.append('price', price.toString())
+        body.append('status', status.toString())
+        body.append('category', category)
+        if (image) {
+            body.append('image', image)
+        }
         // eslint-disable-next-line no-console
         console.log(body)
         const response = await request(requestParams).then(handleClose)
         // eslint-disable-next-line no-console
-        console.log(response)
+        console.log('response : ' + response)
     }
 
     return (
@@ -157,13 +157,10 @@ export default function MyOffersFilter() {
                                         type="number"
                                         value={price}
                                         onChange={(e) =>
-                                            setPrice(parseInt(e.target.value))
+                                            setPrice(Number(e.target.value))
                                         }
                                         startAdornment={
-                                            <InputAdornment
-                                                position="start"
-                                                component={'p'}
-                                            >
+                                            <InputAdornment position="start">
                                                 €
                                             </InputAdornment>
                                         }
@@ -302,7 +299,7 @@ export default function MyOffersFilter() {
                 <DialogActions>
                     {/* TODO: Léa - reset input content when clicked */}
                     <Button onClick={handleClose}>Retour</Button>
-                    {/* TODO: Léa - Send data to request only if all inputs are specified (disabled button) */}
+                    {/* TODO: Léa - Send data to Request only if all inputs are specified (disabled button) */}
                     <Button
                         variant="contained"
                         onClick={handleOfferCreationSubmit}
