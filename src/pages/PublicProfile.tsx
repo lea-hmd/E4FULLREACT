@@ -6,13 +6,17 @@ import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import { PublicProfileType } from '../shared/types/PublicProfileType'
 import { RequestType } from '../shared/types/RequestType'
 import { useTheme } from '@mui/material/styles'
+import { useAuth } from '../context/AuthContext'
 export default function PublicProfile() {
     const theme = useTheme()
     const { id } = useParams()
+    const { state } = useAuth()
+    const token = state.token
     const [publicProfile, setPublicProfile] = useState<PublicProfileType>()
     const requestParams: RequestType = {
         endpoint: '/profile/' + id,
         method: 'GET',
+        customHeaders: { Authorization: `Bearer ${token}` },
     }
     async function getPublicProfile() {
         try {
