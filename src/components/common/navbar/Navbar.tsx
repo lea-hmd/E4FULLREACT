@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AccountCircle, Menu as MenuIcon } from '@mui/icons-material'
 import {
     AppBar,
@@ -70,7 +70,7 @@ export default function Navbar({
         null
     )
     const [openLogoutDialog, setOpenLogoutDialog] = React.useState(false)
-
+    const navigate = useNavigate()
     const mobileFormat = useMediaQuery(theme.breakpoints.down('sm'))
     const pages = pagesConstants
 
@@ -91,6 +91,7 @@ export default function Navbar({
     }
     const handleCloseLogoutDialog = () => {
         setOpenLogoutDialog(false)
+        navigate('/')
     }
 
     return (
