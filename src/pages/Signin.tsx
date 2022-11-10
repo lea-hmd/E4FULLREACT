@@ -99,11 +99,13 @@ export default function Signin() {
             <TextField
                 sx={style}
                 name="password"
+                type="password"
                 id="password"
                 label="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+
             <TextField
                 sx={style}
                 name="mail"

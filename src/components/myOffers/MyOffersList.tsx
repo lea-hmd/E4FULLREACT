@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { RequestType } from '../../shared/types/RequestType'
-import request from '../../api/Request'
+import RequestMethod from '../../api/RequestMethod'
 import { Grid, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import OfferCard from '../offer/OfferCard'
@@ -25,11 +25,11 @@ export default function MyOffersList() {
         const requestParams: RequestType = {
             endpoint: '/admin_offer/my',
             method: 'GET',
-            customHeaders: { Authorization: `Bearer ${token}` },
+            token,
         }
 
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => {
                     setMyOffers(data)
@@ -44,11 +44,11 @@ export default function MyOffersList() {
         const requestParams: RequestType = {
             endpoint: '/admin_offer/' + id,
             method: 'DELETE',
-            customHeaders: { Authorization: `Bearer ${token}` },
+            token,
         }
 
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => {
                     setMyOffers(data)

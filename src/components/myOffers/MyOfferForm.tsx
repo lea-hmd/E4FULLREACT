@@ -17,7 +17,7 @@ import {
     MenuItem,
 } from '@mui/material'
 import { RequestType } from '../../shared/types/RequestType'
-import request from '../../api/Request'
+import RequestMethod from '../../api/RequestMethod'
 import { useAuth } from '../../context/AuthContext'
 
 export default function MyOfferForm() {
@@ -59,7 +59,7 @@ export default function MyOfferForm() {
 
     async function getCategories() {
         try {
-            await request(categoriesParams)
+            await RequestMethod(categoriesParams)
                 .then((response) => response.json())
                 .then((data) => setCategories(data))
         } catch (error: any) {
@@ -89,11 +89,13 @@ export default function MyOfferForm() {
             endpoint: '/admin_offer',
             method: 'POST',
             body,
-            customHeaders: {
-                Authorization: `Bearer ${token}`,
-            },
+            token,
+            formData: true,
         }
-        await request(requestParams).then(handleClose)
+        await RequestMethod(requestParams).then(() => {
+            window.location.reload()
+            handleClose()
+        })
     }
 
     return (
