@@ -1,137 +1,42 @@
-import { Grid, TextField, Button } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
+
+import request from '../api/Request'
+import MyProfileCard from '../components/profile/MyProfileCard'
+import { useAuth } from '../context/AuthContext'
+import { RequestType } from '../shared/types/RequestType'
+import { useTheme } from '@mui/material/styles'
 
 export default function Signin() {
-    const style = {
-        mt: '0.5rem',
-        mb: '0.5rem',
+    const { state } = useAuth()
+    const token = state.token
+    const theme = useTheme()
+
+    const [profile, setProfile] = React.useState(null)
+
+    const requestParams: RequestType = {
+        endpoint: '/user/me',
+        method: 'GET',
+        customHeaders: {
+            Authorization: `Bearer ${token}`,
+        },
     }
-    // function updateProfil() {}
-    const [email, setEmail] = useState<string | null>('')
-    const [password, setPassword] = useState<string | null>('')
-    const [firstname, setFirstname] = useState<string | null>('')
-    const [lastname, setLastname] = useState<string | null>('')
-    const [phone, setPhone] = useState<string | null>('')
-    const [address, setAddress] = useState<string | null>('')
-    const [zipCode, setZipCode] = useState<string | null>('')
-    const [city, setCity] = useState<string | null>('')
-    const [country, setCountry] = useState<string | null>('')
-    // const [identificalFile, setIdentificalFile] = useState<File | null>(null)
-    // const [profilePicture, setProfilePicture] = useState<File | null>(null)
 
-    return (
-        <Grid
-            container
-            style={{
-                margin: 'auto',
-                width: '50%',
-                display: 'flex',
-                flexDirection: 'column',
-            }}
-        >
-            <TextField
-                sx={style}
-                name="lastname"
-                id="lastname"
-                label="Nom"
-                defaultValue={lastname}
-                onChange={(e) => setLastname(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="firstname"
-                id="fisrtname"
-                label="Prénom"
-                defaultValue={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="password"
-                id="password"
-                label="Mot de passe"
-                defaultValue={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="mail"
-                id="mail"
-                label="E-mail"
-                defaultValue={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="phone"
-                id="phone"
-                label="Téléphone"
-                defaultValue={phone}
-                onChange={(e) => setPhone(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="adresse"
-                id="adresse"
-                label="Adresse Postale"
-                defaultValue={address}
-                onChange={(e) => setAddress(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="postalcode"
-                id="postalcode"
-                label="Code Postal"
-                defaultValue={zipCode}
-                onChange={(e) => setZipCode(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="city"
-                id="city"
-                label="Ville"
-                defaultValue={city}
-                onChange={(e) => setCity(e.target.value)}
-            />
-            <TextField
-                sx={style}
-                name="country"
-                id="country"
-                label="Pays"
-                defaultValue={country}
-                onChange={(e) => setCountry(e.target.value)}
-            />
+    async function getMyProfile() {
+        try {
+            await request(requestParams)
+                .then((response) => response.json())
+                .then((data) => setProfile(data))
+            console.log(profile)
+        } catch (error: any) {
+            // eslint-disable-nzext-line no-console
+            console.log(error)
+        }
+    }
 
-            {/* <input
-                type="file"
-                onChange={(e) =>
-                    e.target.files && setIdentificalFile(e.target.files[0])
-                }
-            />
+    React.useEffect(() => {
+        getMyProfile()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
-            <input
-                type="file"
-                onChange={(e) => {
-                    // eslint-disable-next-line no-console
-                    console.log(e.target.files)
-                    e.target.files && setProfilePicture(e.target.files[0])
-                    // eslint-disable-next-line no-console
-                    console.log(profilePicture?.name)
-                }}
-            /> */}
-
-            <Button
-                //Change style
-                // onClick={() => updateProfil()}
-                sx={{
-                    backgroundColor: 'white',
-                    width: '80%',
-                    margin: '3rem auto',
-                    color: '#051F38',
-                }}
-            >
-                Appliquer les modifications
-            </Button>
-        </Grid>
-    )
+    return <MyProfileCard {...{ theme, profile }} />
 }
