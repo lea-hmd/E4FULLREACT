@@ -6,7 +6,7 @@ import CategoryCard from './CategoryCard'
 import CustomContainer from '../../common/custom/CustomContainer'
 
 import { RequestType } from '../../../shared/types/RequestType'
-import request from '../../../api/Request'
+import RequestMethod from '../../../api/RequestMethod'
 
 type CategoriesFilterProps = {
     theme: Theme
@@ -27,7 +27,7 @@ export default function CategoriesFilter({
 
     async function getCategories() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => setCategories(data))
         } catch (error: any) {

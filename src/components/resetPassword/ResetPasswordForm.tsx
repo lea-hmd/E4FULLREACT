@@ -50,7 +50,7 @@ export default function ResetPasswordForm({ theme }: ResetPasswordFormProps) {
 
     // async function resetPassword() {
     //     try {
-    //         await request(requestParams).then((response) => {
+    //         await RequestMethod(requestParams).then((response) => {
     //             if (response.status >= 400 && response.status < 600) {
     //                 throw
     //                 new Error('Bad response from server')

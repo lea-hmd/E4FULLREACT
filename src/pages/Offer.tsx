@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import request from '../api/Request'
+import RequestMethod from '../api/RequestMethod'
 import OfferDetailsCard from '../components/offer/OfferDetailsCard'
 import { RequestType } from '../shared/types/RequestType'
 
@@ -15,7 +15,7 @@ export default function Offer() {
     }
     async function getOfferById() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => setOffer(data))
         } catch (error: any) {

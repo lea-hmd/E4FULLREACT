@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Grid, TextField, Typography } from '@mui/material'
 import { RequestType } from '../shared/types/RequestType'
-import request from '../api/Request'
-import { Link } from 'react-router-dom'
+import RequestMethod from '../api/RequestMethod'
+import { useNavigate } from 'react-router-dom'
+import { Delete, Upload } from '@mui/icons-material'
 
 export default function Signin() {
     const style = {
@@ -21,6 +22,7 @@ export default function Signin() {
     const [country, setCountry] = useState<string>('')
     const [identificalFile, setIdentificalFile] = useState<File | null>(null)
     const [profilePicture, setProfilePicture] = useState<File | null>(null)
+    const navigate = useNavigate()
 
     const handleIdentificalChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -64,8 +66,9 @@ export default function Signin() {
             endpoint: '/registration',
             method: 'POST',
             body,
+            formData: true,
         }
-        await request(requestParams)
+        await RequestMethod(requestParams).then(() => navigate('/connexion'))
     }
     return (
         <Grid
@@ -149,18 +152,23 @@ export default function Signin() {
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
             />
-            <Grid xs={12}>
+            <Grid container>
                 <Grid
                     item
-                    xs={12}
+                    md={6}
+                    p={2}
                     container
                     justifyContent="center"
                     alignItems="center"
-                    m={1}
-                    p={2}
-                    sx={{ border: '1px solid white', flexDirection: 'column' }}
+                    sx={{
+                        border: '1px solid white',
+                        flexDirection: 'column',
+                        borderRadius: '4px',
+                    }}
                 >
-                    <Typography variant="h6">Identifical File :</Typography>
+                    <Typography variant="body1" gutterBottom>
+                        Pièce d'identité :
+                    </Typography>
                     {!identificalFile && (
                         <Grid
                             item
@@ -170,7 +178,8 @@ export default function Signin() {
                             alignItems="center"
                         >
                             <Button variant="contained" component="label">
-                                Télécharger une photo
+                                <Upload />
+
                                 <input
                                     hidden
                                     accept="image/*"
@@ -201,22 +210,27 @@ export default function Signin() {
                                 variant="contained"
                                 onClick={handleRemoveIdentifical}
                             >
-                                Supprimer l'image
+                                <Delete />
                             </Button>
                         </Grid>
                     )}
                 </Grid>
                 <Grid
                     item
-                    xs={12}
+                    md={6}
                     container
                     justifyContent="center"
                     alignItems="center"
-                    m={1}
                     p={2}
-                    sx={{ border: '1px solid white', flexDirection: 'column' }}
+                    sx={{
+                        border: '1px solid white',
+                        flexDirection: 'column',
+                        borderRadius: '4px',
+                    }}
                 >
-                    <Typography variant="h6">Profile Picture :</Typography>
+                    <Typography variant="body1" gutterBottom>
+                        Photo de profil :
+                    </Typography>
                     {!profilePicture && (
                         <Grid
                             item
@@ -226,7 +240,7 @@ export default function Signin() {
                             alignItems="center"
                         >
                             <Button variant="contained" component="label">
-                                Télécharger une photo
+                                <Upload />
                                 <input
                                     hidden
                                     accept="image/*"
@@ -257,7 +271,7 @@ export default function Signin() {
                                 variant="contained"
                                 onClick={handleRemoveProfil}
                             >
-                                Supprimer l'image
+                                <Delete />
                             </Button>
                         </Grid>
                     )}
@@ -266,8 +280,6 @@ export default function Signin() {
             <Button
                 //Change style
                 variant="contained"
-                component={Link}
-                to={'/connexion'}
                 onClick={() => handleSigninSubmit()}
                 sx={{
                     margin: '3rem auto',

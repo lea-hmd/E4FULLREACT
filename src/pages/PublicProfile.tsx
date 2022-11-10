@@ -1,7 +1,7 @@
 import { Divider, Grid, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import request from '../api/Request'
+import RequestMethod from '../api/RequestMethod'
 import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import { PublicProfileType } from '../shared/types/PublicProfileType'
 import { RequestType } from '../shared/types/RequestType'
@@ -18,7 +18,7 @@ export default function PublicProfile() {
     }
     async function getPublicProfile() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => {
                     setPublicProfile(data)

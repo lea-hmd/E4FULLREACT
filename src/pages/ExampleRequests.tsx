@@ -1,5 +1,5 @@
 import React from 'react'
-// import request from '../api/Request'
+// import RequestMethod from '../api/Request'
 // import { RequestType } from '../shared/types/RequestType'
 // import { Page } from '../shared/types/Page'
 export default function ExampleRequests() {
@@ -33,7 +33,7 @@ export default function ExampleRequests() {
 */
     //Mettre la requête dans le useEffect permet de lancer l'appel API à chaque évènement sur la page, cela est pratique pour l'affichage de tous les produits par exemple, sinon faire l'appel dans une fonction handle***Click par exemple pour déclencher la requête uniquement lors du clic
     //     React.useEffect(() => {
-    //         request(requestParams)
+    //         RequestMethod(requestParams)
     //             .then((response) => response.json())
     //             .then((json) => console.log(json))
     //     }, [])

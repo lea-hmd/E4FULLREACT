@@ -18,7 +18,8 @@ import {
 } from '@mui/material'
 import { OfferBody } from '../../shared/types/OfferBody'
 import { RequestType } from '../../shared/types/RequestType'
-import request from '../../api/Request'
+import RequestMethod from '../../api/RequestMethod'
+import { useAuth } from '../../context/AuthContext'
 
 export default function MyOffersFilter() {
     const theme = useTheme()
@@ -30,6 +31,8 @@ export default function MyOffersFilter() {
     const [category, setCategory] = React.useState('')
     const [image, setImage] = React.useState<File | null>(null)
     const [categories, setCategories] = React.useState([])
+    const { state } = useAuth()
+    const token = state.token
 
     const handleClickOpen = () => {
         setOpen(true)
@@ -62,9 +65,7 @@ export default function MyOffersFilter() {
         endpoint: '/admin_offer',
         method: 'POST',
         body,
-        customHeaders: {
-            Authorization: 'Bearer ',
-        },
+        token,
     }
 
     const categoriesParams: RequestType = {
@@ -74,7 +75,7 @@ export default function MyOffersFilter() {
 
     async function getCategories() {
         try {
-            await request(categoriesParams)
+            await RequestMethod(categoriesParams)
                 .then((response) => response.json())
                 .then((data) => setCategories(data))
         } catch (error: any) {
@@ -91,7 +92,7 @@ export default function MyOffersFilter() {
     const handleOfferCreationSubmit = async () => {
         // eslint-disable-next-line no-console
         console.log(body)
-        const response = await request(requestParams).then(handleClose)
+        const response = await RequestMethod(requestParams).then(handleClose)
         // eslint-disable-next-line no-console
         console.log(response)
     }
@@ -302,7 +303,7 @@ export default function MyOffersFilter() {
                 <DialogActions>
                     {/* TODO: Léa - reset input content when clicked */}
                     <Button onClick={handleClose}>Retour</Button>
-                    {/* TODO: Léa - Send data to request only if all inputs are specified (disabled button) */}
+                    {/* TODO: Léa - Send data to RequestMethod only if all inputs are specified (disabled button) */}
                     <Button
                         variant="contained"
                         onClick={handleOfferCreationSubmit}
