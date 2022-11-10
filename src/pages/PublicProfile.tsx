@@ -6,6 +6,7 @@ import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import { PublicProfileType } from '../shared/types/PublicProfileType'
 import { RequestType } from '../shared/types/RequestType'
 import { useTheme } from '@mui/material/styles'
+import CustomContainer from '../components/common/custom/CustomContainer'
 
 export default function PublicProfile() {
     const { id } = useParams()
@@ -34,7 +35,7 @@ export default function PublicProfile() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     return (
-        <Grid>
+        <CustomContainer>
             {publicProfile && (
                 <Typography variant="h2">
                     {publicProfile.firstname + ' '}
@@ -61,6 +62,6 @@ export default function PublicProfile() {
             ) : (
                 <Typography variant="h5">Aucune offre publiée</Typography>
             )}
-        </Grid>
+        </CustomContainer>
     )
 }
