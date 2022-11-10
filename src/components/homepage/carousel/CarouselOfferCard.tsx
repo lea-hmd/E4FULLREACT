@@ -35,7 +35,6 @@ export default function CarouselOfferCard({
     const iconSize = 'small'
     return (
         <MuiLink component={Link} to={'/annonce/' + id} underline="none">
-            {/* TODO: Léa - Fix redirection */}
             <Card
                 sx={{
                     backgroundColor: theme.palette.secondary.dark,
@@ -74,7 +73,6 @@ export default function CarouselOfferCard({
                                     iconSize,
                                 })}
                             </IconButton>
-                            {/* TODO: Léa - Change icons dynamically */}
                         </Grid>
                         <Grid item container justifyContent="center" xs={4}>
                             <Typography

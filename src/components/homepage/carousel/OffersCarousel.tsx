@@ -16,7 +16,6 @@ export default function OffersCarousel({ theme, offers }: OffersCarouselProps) {
     return (
         <CustomContainer>
             <SectionTitle title="Dernières annonces" />
-            {/* TODO: Léa - Change style later */}
             <Carousel
                 additionalTransfrom={0}
                 arrows

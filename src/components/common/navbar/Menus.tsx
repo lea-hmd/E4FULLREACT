@@ -126,7 +126,6 @@ export default function Menus({
                             onClick={
                                 page.logout ? handleOpenLogoutDialog : undefined
                             }
-                            //TODO: Léa - Add onClick props with logout function only if setting title = Se déconnecter
                         >
                             <ListItemIcon>{page.icon}</ListItemIcon>
                             <ListItemText>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Theme, Typography } from '@mui/material'
 
-import OfferCard from './OfferCard'
+import OfferCard from '../offer/OfferCard'
 
 type AllOffersProps = {
     theme: Theme
@@ -50,6 +50,7 @@ export default function FilteredOffers({
                                 xl={3}
                             >
                                 <OfferCard
+                                    myOffer={false}
                                     {...{
                                         id,
                                         theme,
