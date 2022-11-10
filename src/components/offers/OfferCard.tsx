@@ -18,6 +18,7 @@ import noImage from '../../assets/images/noImage.jpg'
 import { categoryIcon, categoryName } from '../common/utils/utils'
 
 type OfferCardProps = {
+    id: number
     theme: Theme
     title: string
     description: string
@@ -28,6 +29,7 @@ type OfferCardProps = {
 }
 
 export default function OfferCard({
+    id,
     theme,
     title,
     description,
@@ -39,7 +41,7 @@ export default function OfferCard({
     const iconSize = 'medium'
 
     return (
-        <MuiLink component={Link} to="/" underline="none">
+        <MuiLink component={Link} to={'/annonce/' + id} underline="none">
             {/* TODO: Léa - Fix redirection */}
             <Card
                 sx={{
@@ -107,6 +109,8 @@ export default function OfferCard({
                         </Grid>
                         <Grid item xs={6} container justifyContent="flex-end">
                             <Button
+                                component={Link}
+                                to={'/annonce/' + id}
                                 variant="contained"
                                 size="small"
                                 color="primary"
