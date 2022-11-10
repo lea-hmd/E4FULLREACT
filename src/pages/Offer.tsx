@@ -2,27 +2,13 @@ import { useTheme } from '@mui/material'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import request from '../api/Request'
-import OfferPageCard from '../components/offer/OfferPageCard'
+import OfferDetailsCard from '../components/offer/OfferDetailsCard'
 import { RequestType } from '../shared/types/RequestType'
-
-type OfferType = {
-    title: string
-    description: string
-    price: number
-    category: string
-    product_picture: any
-    Author: {
-        firstname: string
-        lastname: string
-        profile_picture: any
-    }
-    Status: { label: string }
-}
 
 export default function Offer() {
     const theme = useTheme()
     const { id } = useParams()
-    const [offer, setOffer] = React.useState<OfferType | null>(null)
+    const [offer, setOffer] = React.useState(null)
     const requestParams: RequestType = {
         endpoint: '/offer/' + id,
         method: 'GET',
@@ -42,5 +28,5 @@ export default function Offer() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
-    return <OfferPageCard {...{ theme, offer }} />
+    return <OfferDetailsCard {...{ theme, offer }} />
 }
