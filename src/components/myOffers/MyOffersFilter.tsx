@@ -18,8 +18,12 @@ import {
 } from '@mui/material'
 import { RequestType } from '../../shared/types/RequestType'
 import request from '../../api/Request'
+import { useAuth } from '../../context/AuthContext'
 
 export default function MyOffersFilter() {
+    const { state } = useAuth()
+    const token = state.token
+
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
     const [title, setTitle] = React.useState('')
@@ -55,7 +59,7 @@ export default function MyOffersFilter() {
         method: 'POST',
         body,
         customHeaders: {
-            Authorization: 'Bearer ',
+            Authorization: `Bearer ${token}`,
         },
     }
 
