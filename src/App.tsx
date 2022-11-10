@@ -21,10 +21,12 @@ import Offer from './pages/Offer'
 import Login from './pages/Login'
 import Signin from './pages/Signin'
 import PageNotFound from './pages/PageNotFound'
+import AuthenticatedError from './components/common/authenticatedError/AuthenticatedError'
+import { useAuth } from './context/AuthContext'
 
 export default function App() {
-    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    const [loggedIn, setLoggedIn] = React.useState<boolean>(false) //TODO: Léa - Finish this when connection functionality is done
+    const { state } = useAuth()
+    const loggedIn = state.loggedIn
 
     // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -84,19 +86,35 @@ export default function App() {
                             path="/annonces"
                             element={<Offers {...{ hpCategory }} />}
                         />
-                        <Route path="/mon-profil" element={<MyProfile />} />
+                        <Route
+                            path="/mon-profil"
+                            element={
+                                loggedIn ? (
+                                    <MyProfile />
+                                ) : (
+                                    <AuthenticatedError />
+                                )
+                            }
+                        />
                         <Route path="/profil/:id" element={<PublicProfile />} />
-                        <Route path="/mes-annonces" element={<MyOffers />} />
-                        <Route path="/mon-annonce/:id" element={<MyOffer />} />
+                        <Route
+                            path="/mes-annonces"
+                            element={
+                                loggedIn ? <MyOffers /> : <AuthenticatedError />
+                            }
+                        />
+                        <Route
+                            path="/mon-annonce/:id"
+                            element={
+                                loggedIn ? <MyOffer /> : <AuthenticatedError />
+                            }
+                        />
                         <Route path="/annonce/:id" element={<Offer />} />
                         <Route
                             path="/reinitialiser-mot-de-passe"
                             element={<ResetPassword />}
                         />
-                        <Route
-                            path="/connexion"
-                            element={<Login {...{ setLoggedIn }} />}
-                        />
+                        <Route path="/connexion" element={<Login />} />
                         <Route path="/inscription" element={<Signin />} />
                         <Route path="*" element={<PageNotFound />} />
                     </Route>
