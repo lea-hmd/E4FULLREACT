@@ -2,7 +2,7 @@ import React from 'react'
 
 export type Page = {
     id: number
-    link: string
+    link?: string
     title: string
     logout?: boolean
     userMenu?: boolean

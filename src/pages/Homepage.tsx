@@ -1,6 +1,5 @@
 import React from 'react'
-import { Theme } from '@mui/material'
-
+import { useTheme } from '@mui/material/styles'
 import CategoriesFilter from '../components/homepage/categoriesFilter/CategoriesFilter'
 import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import Banderole from '../components/homepage/banderole/Banderole'
@@ -9,12 +8,13 @@ import { RequestType } from '../shared/types/RequestType'
 import request from '../api/Request'
 
 type HomepageProps = {
-    theme: Theme
+    // eslint-disable-next-line no-unused-vars
+    handleCategoryClicked: (machine_name: string) => void
 }
 
-export default function Homepage({ theme }: HomepageProps) {
+export default function Homepage({ handleCategoryClicked }: HomepageProps) {
     const [offers, setOffers] = React.useState([])
-
+    const theme = useTheme()
     const requestParams: RequestType = {
         endpoint: '/search?key=',
         method: 'GET',
@@ -38,9 +38,9 @@ export default function Homepage({ theme }: HomepageProps) {
 
     return (
         <>
-            {/* TODO: Léa - Redirection on category click and on carousel offer click */}
+            {/* TODO: Léa - Redirection on carousel offer click */}
             <Banderole {...{ offers }} />
-            <CategoriesFilter {...{ theme }} />
+            <CategoriesFilter {...{ theme, handleCategoryClicked }} />
             <OffersCarousel {...{ theme, offers }} />
         </>
     )
