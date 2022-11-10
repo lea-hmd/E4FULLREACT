@@ -26,9 +26,9 @@ export default function Signin() {
             await request(requestParams)
                 .then((response) => response.json())
                 .then((data) => setProfile(data))
-            console.log(profile)
         } catch (error: any) {
             // eslint-disable-nzext-line no-console
+            // eslint-disable-next-line no-console
             console.log(error)
         }
     }
