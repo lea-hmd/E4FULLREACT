@@ -5,7 +5,7 @@ import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import Banderole from '../components/homepage/banderole/Banderole'
 
 import { RequestType } from '../shared/types/RequestType'
-import request from '../api/Request'
+import RequestMethod from '../api/RequestMethod'
 
 type HomepageProps = {
     // eslint-disable-next-line no-unused-vars
@@ -22,7 +22,7 @@ export default function Homepage({ handleCategoryClicked }: HomepageProps) {
 
     async function getOffers() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => setOffers(data))
         } catch (error: any) {

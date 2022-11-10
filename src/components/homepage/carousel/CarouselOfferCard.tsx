@@ -83,8 +83,15 @@ export default function CarouselOfferCard({
                                 {price} €
                             </Typography>
                         </Grid>
-                        <Grid item xs={4} container justifyContent="flex-end">
-                            <IconButton component={Link} to={'/annonce/' + id}>
+                        <Grid
+                            item
+                            xs={4}
+                            container
+                            justifyContent="flex-end"
+                            component={Link}
+                            to={'/annonce/' + id}
+                        >
+                            <IconButton>
                                 <Info color="primary" />
                             </IconButton>
                         </Grid>

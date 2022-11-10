@@ -1,6 +1,6 @@
 import React from 'react'
 
-import request from '../api/Request'
+import RequestMethod from '../api/RequestMethod'
 import MyProfileCard from '../components/profile/MyProfileCard'
 import { useAuth } from '../context/AuthContext'
 import { RequestType } from '../shared/types/RequestType'
@@ -16,14 +16,12 @@ export default function Signin() {
     const requestParams: RequestType = {
         endpoint: '/user/me',
         method: 'GET',
-        customHeaders: {
-            Authorization: `Bearer ${token}`,
-        },
+        token,
     }
 
     async function getMyProfile() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => setProfile(data))
         } catch (error: any) {

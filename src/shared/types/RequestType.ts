@@ -3,4 +3,6 @@ export type RequestType = {
     method?: string
     body?: any
     customHeaders?: any
+    formData?: boolean
+    token?: string
 }

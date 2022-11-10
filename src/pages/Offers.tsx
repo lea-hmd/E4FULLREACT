@@ -6,7 +6,7 @@ import CustomContainer from '../components/common/custom/CustomContainer'
 import FilteredOffers from '../components/offers/FilteredOffers'
 
 import { RequestType } from '../shared/types/RequestType'
-import request from '../api/Request'
+import RequestMethod from '../api/RequestMethod'
 
 type OffersProps = {
     hpCategory: string
@@ -73,7 +73,7 @@ export default function Offers({ hpCategory }: OffersProps) {
             method: 'GET',
         }
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => setFilteredOffers(data))
         } catch (error: any) {

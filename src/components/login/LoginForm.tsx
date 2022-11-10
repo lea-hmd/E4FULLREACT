@@ -17,7 +17,7 @@ import {
 } from '@mui/material'
 
 import { useNavigate, Link } from 'react-router-dom'
-import request from '../../api/Request'
+import RequestMethod from '../../api/RequestMethod'
 import { LoginBody } from '../../shared/types/LoginBody'
 import { RequestType } from '../../shared/types/RequestType'
 import Visibility from '@mui/icons-material/Visibility'
@@ -61,11 +61,14 @@ export default function LoginForm({ theme }: LoginFormProps) {
         endpoint: '/login',
         method: 'POST',
         body: requestBody,
+        customHeaders: {
+            'Content-Type': 'application/json',
+        },
     }
 
     async function login() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => {
                     if (response.status >= 400 && response.status < 600) {
                         throw (

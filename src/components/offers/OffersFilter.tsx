@@ -16,7 +16,7 @@ import { SectionTitle } from '../common/custom/CustomTitles'
 import { Search } from '@mui/icons-material'
 
 import { RequestType } from '../../shared/types/RequestType'
-import request from '../../api/Request'
+import RequestMethod from '../../api/RequestMethod'
 import { Category } from '../../shared/types/Category'
 
 type OffersFilterProps = {
@@ -53,7 +53,7 @@ export default function OffersFilter({
 
     async function getCategories() {
         try {
-            await request(requestParams)
+            await RequestMethod(requestParams)
                 .then((response) => response.json())
                 .then((data) => setCategories(data))
         } catch (error: any) {
