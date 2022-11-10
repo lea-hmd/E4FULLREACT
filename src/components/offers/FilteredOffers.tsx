@@ -29,6 +29,7 @@ export default function FilteredOffers({
                     {filteredOffers?.map(
                         (
                             {
+                                id,
                                 title,
                                 description,
                                 price,
@@ -36,6 +37,7 @@ export default function FilteredOffers({
                                 product_picture,
                                 created_at,
                             }: any,
+                            //TODO: Fix any type
                             index: React.Key
                         ) => (
                             <Grid
@@ -49,6 +51,7 @@ export default function FilteredOffers({
                             >
                                 <OfferCard
                                     {...{
+                                        id,
                                         theme,
                                         title,
                                         description,
