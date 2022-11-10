@@ -22,10 +22,11 @@ import Login from './pages/Login'
 import Signin from './pages/Signin'
 import PageNotFound from './pages/PageNotFound'
 import AuthenticatedError from './components/common/authenticatedError/AuthenticatedError'
+import { useAuth } from './context/AuthContext'
 
 export default function App() {
-    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-    const [loggedIn, setLoggedIn] = React.useState<boolean>(false) //TODO: Léa - Finish this when connection functionality is done
+    const { state } = useAuth()
+    const loggedIn = state.loggedIn
 
     // Récupère l'apparence en fonction des choix de l'utilisateur sur sa machine
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
