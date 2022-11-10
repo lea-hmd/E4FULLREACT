@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import {
     Card,
@@ -20,29 +22,19 @@ import noImage from '../../assets/images/noImage.jpg'
 import { categoryIcon, categoryName } from '../common/utils/utils'
 
 type OfferCardProps = {
-    id: number
     theme: Theme
-    title: string
-    description: string
-    price: number
-    category: string
-    product_picture: any
-    created_at: string
+    offer: any
     myOffer: boolean
     handleOpenDeleteDialog?: () => void
+    handleClickOpen?: (offer: any) => void
 }
 
 export default function OfferCard({
-    id,
+    offer,
     theme,
-    title,
-    description,
-    price,
-    category,
-    product_picture,
-    created_at,
     myOffer,
     handleOpenDeleteDialog,
+    handleClickOpen,
 }: OfferCardProps) {
     const iconSize = 'medium'
 
@@ -61,17 +53,21 @@ export default function OfferCard({
             <CardMedia
                 component="img"
                 height="170"
-                image={product_picture == null ? noImage : product_picture}
+                image={
+                    offer!.product_picture == null
+                        ? noImage
+                        : offer!.product_picture
+                }
                 alt="Image de l'offre"
             />
             <CardContent>
                 <Chip
                     size="small"
                     icon={categoryIcon({
-                        machine_name: category,
+                        machine_name: offer!.category,
                         iconSize,
                     })}
-                    label={categoryName(category)}
+                    label={categoryName(offer!.category)}
                     sx={{ px: 1, mb: 2 }}
                 />
                 <Typography
@@ -81,10 +77,10 @@ export default function OfferCard({
                     component="div"
                     color="primary"
                 >
-                    {title}
+                    {offer!.title}
                 </Typography>
                 <Typography noWrap gutterBottom variant="body2" color="primary">
-                    {description ?? 'Pas de description'}
+                    {offer!.description ?? 'Pas de description'}
                 </Typography>
                 <Typography
                     mt={1.5}
@@ -92,7 +88,7 @@ export default function OfferCard({
                     color="primary"
                     fontWeight="bold"
                 >
-                    {price} €
+                    {offer!.price} €
                 </Typography>
             </CardContent>
             <CardActions>
@@ -103,7 +99,7 @@ export default function OfferCard({
                             color="primary"
                             fontWeight="bold"
                         >
-                            {moment(created_at).format('DD/MM/YYYY')}
+                            {moment(offer!.created_at).format('DD/MM/YYYY')}
                         </Typography>
                     </Grid>
                     <Grid
@@ -117,11 +113,13 @@ export default function OfferCard({
                             <>
                                 <IconButton
                                     component={Link}
-                                    to={'/annonce/' + id}
+                                    to={'/annonce/' + offer!.id}
                                 >
                                     <Info />
                                 </IconButton>
-                                <IconButton>
+                                <IconButton
+                                    onClick={() => handleClickOpen?.(offer)}
+                                >
                                     <Edit />
                                 </IconButton>
                                 <IconButton onClick={handleOpenDeleteDialog}>
@@ -131,7 +129,7 @@ export default function OfferCard({
                         ) : (
                             <Button
                                 component={Link}
-                                to={'/annonce/' + id}
+                                to={'/annonce/' + offer!.id}
                                 variant="contained"
                                 size="small"
                                 color="primary"
