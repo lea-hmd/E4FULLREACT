@@ -5,10 +5,12 @@ import request from '../api/Request'
 import OffersCarousel from '../components/homepage/carousel/OffersCarousel'
 import { PublicProfileType } from '../shared/types/PublicProfileType'
 import { RequestType } from '../shared/types/RequestType'
-import { Theme } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import CustomContainer from '../components/common/custom/CustomContainer'
 
-export default function PublicProfile(theme: Theme) {
+export default function PublicProfile() {
     const { id } = useParams()
+    const theme = useTheme()
     const [publicProfile, setPublicProfile] = useState<PublicProfileType>()
     const requestParams: RequestType = {
         endpoint: '/profile/' + id,
@@ -33,7 +35,7 @@ export default function PublicProfile(theme: Theme) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
     return (
-        <Grid>
+        <CustomContainer>
             {publicProfile && (
                 <Typography variant="h2">
                     {publicProfile.firstname + ' '}
@@ -60,6 +62,6 @@ export default function PublicProfile(theme: Theme) {
             ) : (
                 <Typography variant="h5">Aucune offre publiée</Typography>
             )}
-        </Grid>
+        </CustomContainer>
     )
 }

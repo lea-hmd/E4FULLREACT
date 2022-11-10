@@ -52,7 +52,6 @@ export const pages: Page[] = [
     {
         id: 6,
         title: 'Se déconnecter',
-        link: '/deconnexion',
         privateRoute: true,
         userMenu: true,
         logout: true,
