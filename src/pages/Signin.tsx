@@ -267,7 +267,7 @@ export default function Signin() {
                 //Change style
                 variant="contained"
                 component={Link}
-                to={'/'}
+                to={'/connexion'}
                 onClick={() => handleSigninSubmit()}
                 sx={{
                     margin: '3rem auto',
