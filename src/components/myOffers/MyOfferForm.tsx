@@ -20,27 +20,34 @@ import { RequestType } from '../../shared/types/RequestType'
 import RequestMethod from '../../api/RequestMethod'
 import { useAuth } from '../../context/AuthContext'
 
-export default function MyOfferForm() {
+type MyOfferFormProps = {
+    editOffer: any
+    isEditing: boolean
+    open: boolean
+    handleClose: () => void
+}
+
+export default function MyOfferForm({
+    editOffer,
+    handleClose,
+    open,
+    isEditing,
+}: MyOfferFormProps) {
     const { state } = useAuth()
     const token = state.token
 
     const theme = useTheme()
-    const [open, setOpen] = React.useState(false)
-    const [title, setTitle] = React.useState('')
-    const [description, setDescription] = React.useState('')
-    const [price, setPrice] = React.useState(0)
+    const [title, setTitle] = React.useState(isEditing ? editOffer.title : '')
+    const [description, setDescription] = React.useState(
+        isEditing ? editOffer.description : ''
+    )
+    const [price, setPrice] = React.useState(isEditing ? editOffer.price : 0)
     const [status, setStatus] = React.useState(1)
-    const [category, setCategory] = React.useState('')
+    const [category, setCategory] = React.useState(
+        isEditing ? editOffer.category : ''
+    )
     const [image, setImage] = React.useState<File | null>(null)
     const [categories, setCategories] = React.useState([])
-
-    const handleClickOpen = () => {
-        setOpen(true)
-    }
-
-    const handleClose = () => {
-        setOpen(false)
-    }
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
@@ -86,8 +93,10 @@ export default function MyOfferForm() {
         }
 
         const requestParams: RequestType = {
-            endpoint: '/admin_offer',
-            method: 'POST',
+            endpoint: isEditing
+                ? '/admin_offer/' + editOffer.id
+                : '/admin_offer',
+            method: isEditing ? 'PUT' : 'POST',
             body,
             token,
             formData: true,
@@ -100,9 +109,6 @@ export default function MyOfferForm() {
 
     return (
         <div>
-            <Button variant="contained" onClick={handleClickOpen}>
-                Créer une annonce
-            </Button>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -113,7 +119,7 @@ export default function MyOfferForm() {
                 }}
             >
                 <DialogTitle sx={{ fontWeight: 'bold' }}>
-                    Création d'une annonce
+                    {isEditing ? 'Modifier une annonce' : 'Créer une annonce'}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">

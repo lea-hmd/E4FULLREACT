@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { RequestType } from '../../shared/types/RequestType'
@@ -6,8 +7,21 @@ import { Grid, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import OfferCard from '../offer/OfferCard'
 import ConfirmDeleteDialog from './ConfirmDeleteDialog'
+import MyOfferForm from './MyOfferForm'
 
-export default function MyOffersList() {
+type MyOfferListProps = {
+    handleClickOpen?: (offer: any) => void
+    isEditing: boolean
+    open: boolean
+    handleClose: () => void
+}
+
+export default function MyOffersList({
+    handleClickOpen,
+    open,
+    handleClose,
+    isEditing,
+}: MyOfferListProps) {
     const theme = useTheme()
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
     const [myOffers, setMyOffers] = useState<any>()
@@ -83,54 +97,44 @@ export default function MyOffersList() {
                                 {myOffers?.length} résultats trouvés
                             </Typography>
                         </Grid>
-                        {myOffers?.map(
-                            (
-                                {
-                                    id,
-                                    title,
-                                    description,
-                                    price,
-                                    category,
-                                    product_picture,
-                                    created_at,
-                                }: any,
-                                index: React.Key
-                            ) => (
-                                <Grid
-                                    item
-                                    container
-                                    justifyContent="center"
-                                    key={index}
-                                    sm={6}
-                                    md={4}
-                                    xl={3}
-                                >
-                                    <OfferCard
-                                        myOffer={true}
-                                        {...{
-                                            id,
-                                            theme,
-                                            title,
-                                            description,
-                                            price,
-                                            category,
-                                            product_picture,
-                                            created_at,
-                                            handleOpenDeleteDialog,
-                                        }}
-                                    />
-                                    <ConfirmDeleteDialog
-                                        {...{
-                                            id,
-                                            theme,
-                                            openDeleteDialog,
-                                            handleDeleteOffer,
-                                            handleCloseDeleteDialog,
-                                        }}
-                                    />
-                                </Grid>
-                            )
-                        )}
+                        {myOffers?.map((offer: any, index: React.Key) => (
+                            <Grid
+                                item
+                                container
+                                justifyContent="center"
+                                key={index}
+                                sm={6}
+                                md={4}
+                                xl={3}
+                            >
+                                <OfferCard
+                                    myOffer={true}
+                                    {...{
+                                        theme,
+                                        handleOpenDeleteDialog,
+                                        handleClickOpen,
+                                        offer,
+                                    }}
+                                />
+                                <MyOfferForm
+                                    {...{
+                                        editOffer: offer,
+                                        open,
+                                        handleClose,
+                                        isEditing,
+                                    }}
+                                />
+                                <ConfirmDeleteDialog
+                                    id={offer.id}
+                                    {...{
+                                        theme,
+                                        openDeleteDialog,
+                                        handleDeleteOffer,
+                                        handleCloseDeleteDialog,
+                                    }}
+                                />
+                            </Grid>
+                        ))}
                     </>
                 ) : (
                     <Typography

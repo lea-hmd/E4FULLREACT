@@ -28,15 +28,7 @@ export default function FilteredOffers({
                     </Grid>
                     {filteredOffers?.map(
                         (
-                            {
-                                id,
-                                title,
-                                description,
-                                price,
-                                category,
-                                product_picture,
-                                created_at,
-                            }: any,
+                            offer: any,
                             //TODO: Fix any type
                             index: React.Key
                         ) => (
@@ -52,14 +44,8 @@ export default function FilteredOffers({
                                 <OfferCard
                                     myOffer={false}
                                     {...{
-                                        id,
                                         theme,
-                                        title,
-                                        description,
-                                        price,
-                                        category,
-                                        product_picture,
-                                        created_at,
+                                        offer,
                                     }}
                                 />
                             </Grid>
